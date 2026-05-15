@@ -6,7 +6,7 @@
   <title>Work — Amit Baghel</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=Fraunces:ital,opsz,wght@1,9..144,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
   <style>
     :root {
       --bg:         #0D1510;
@@ -48,8 +48,15 @@
     }
 
     .nav-name {
-      font-family: var(--serif); font-size: 1.15rem;
-      font-weight: 400; color: var(--ink); text-decoration: none;
+      /* Option A — Fraunces (active) */
+      font-family: 'Fraunces', serif; font-size: 1.1rem;
+      font-weight: 300; font-style: italic;
+      color: var(--ink); text-decoration: none; letter-spacing: 0.01em;
+
+      /* Option B — DM Serif Display (swap in to try)
+      font-family: 'DM Serif Display', serif; font-size: 1.1rem;
+      font-weight: 400; font-style: italic;
+      color: var(--ink); text-decoration: none; letter-spacing: 0.03em; */
     }
 
     .nav-links { display: flex; gap: 2.5rem; list-style: none; }
@@ -315,6 +322,7 @@
     <a class="nav-name" href="index.html">Amit Baghel</a>
     <ul class="nav-links">
       <li><a href="work.html" class="active">Work</a></li>
+      <li><a href="reads.html">Reads</a></li>
       <li><a href="https://github.com/abaghel06" target="_blank" rel="noopener">GitHub</a></li>
       <li><a href="https://linkedin.com/in/abaghel06" target="_blank" rel="noopener">LinkedIn</a></li>
     </ul>
@@ -356,25 +364,6 @@
       <p class="block-label">Projects</p>
 
       <div class="proj-card">
-        <p class="proj-tag">AWS-Wipro Codeathon</p>
-        <h3 class="proj-name">Revenue Leakage Finder</h3>
-        <p class="proj-story">
-          Telecom companies lose money every day to billing gaps they don't even know exist — usage that never got billed, pricing rules applied wrong, payments that failed silently. This project builds an <strong>agentic system that hunts those anomalies automatically</strong>.
-        </p>
-        <p class="proj-story">
-          I designed the architecture and used Amazon Kiro to guide the build — a multi-agent setup where different agents handle reconciliation, reasoning, and reporting. It pulls from billing systems, CRM, and payment gateways, then surfaces what doesn't add up.
-        </p>
-        <div class="chips">
-          <span class="chip">LangGraph</span>
-          <span class="chip">Amazon Bedrock</span>
-          <span class="chip">Python</span>
-          <span class="chip">FastAPI</span>
-          <span class="chip">Docker</span>
-        </div>
-        <a href="https://github.com/abaghel06/revenueLeakageFinder" target="_blank" rel="noopener" class="proj-link">View on GitHub</a>
-      </div>
-
-      <div class="proj-card">
         <p class="proj-tag">Personal Project</p>
         <h3 class="proj-name">LoanIQ — Intelligent Loan Approval Assistant</h3>
         <p class="proj-story">
@@ -392,6 +381,25 @@
           <span class="chip">Python</span>
         </div>
         <a href="https://github.com/abaghel06/LoanIQ---Intelligent-Load-Approval-Assistant" target="_blank" rel="noopener" class="proj-link">View on GitHub</a>
+      </div>
+
+      <div class="proj-card">
+        <p class="proj-tag">AWS-Wipro Codeathon</p>
+        <h3 class="proj-name">Revenue Leakage Finder</h3>
+        <p class="proj-story">
+          Telecom companies lose money every day to billing gaps they don't even know exist — usage that never got billed, pricing rules applied wrong, payments that failed silently. This project builds an <strong>agentic system that hunts those anomalies automatically</strong>.
+        </p>
+        <p class="proj-story">
+          I designed the architecture and used Amazon Kiro to guide the build — a multi-agent setup where different agents handle reconciliation, reasoning, and reporting. It pulls from billing systems, CRM, and payment gateways, then surfaces what doesn't add up.
+        </p>
+        <div class="chips">
+          <span class="chip">LangGraph</span>
+          <span class="chip">Amazon Bedrock</span>
+          <span class="chip">Python</span>
+          <span class="chip">FastAPI</span>
+          <span class="chip">Docker</span>
+        </div>
+        <a href="https://github.com/abaghel06/revenueLeakageFinder" target="_blank" rel="noopener" class="proj-link">View on GitHub</a>
       </div>
 
       <div class="proj-card">
