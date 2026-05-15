@@ -1,0 +1,14 @@
+[
+  {
+    "title": "The Bitter Lesson",
+    "url": "http://www.incompleteideas.net/IncIdeas/BitterLesson.html",
+    "source": "Rich Sutton",
+    "note": "General methods that leverage computation always win in the long run. Worth reading every few months."
+  },
+  {
+    "title": "What We Learned from a Year of Building with LLMs",
+    "url": "https://www.oreilly.com/radar/what-we-learned-from-a-year-of-building-with-llms/",
+    "source": "O'Reilly Radar",
+    "note": "Practical patterns from people who've actually shipped LLM products. Dense and useful."
+  }
+]

@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reads — Amit Baghel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg:         #0D1510;
+      --bg-2:       #131D17;
+      --bg-3:       #1A2620;
+      --border:     rgba(82, 183, 136, 0.12);
+      --ink:        #E4EDE8;
+      --ink-soft:   #9CB5A8;
+      --ink-mute:   #5A7A6A;
+      --green:      #52B788;
+      --green-dim:  rgba(82, 183, 136, 0.1);
+      --serif:      'Cormorant Garamond', Georgia, serif;
+      --sans:       'DM Sans', system-ui, sans-serif;
+      --ease:       cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg); color: var(--ink);
+      font-family: var(--sans); font-weight: 300;
+      line-height: 1.75; -webkit-font-smoothing: antialiased;
+    }
+
+    body::before {
+      content: ''; position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 9999; opacity: 0.5;
+    }
+
+    /* ── Nav ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.4rem 4rem;
+      background: rgba(13, 21, 16, 0.82);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-name {
+      font-family: var(--serif); font-size: 1.15rem;
+      font-weight: 400; color: var(--ink); text-decoration: none;
+    }
+
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.82rem; color: var(--ink-soft); text-decoration: none;
+      letter-spacing: 0.07em; text-transform: uppercase;
+      transition: color 0.3s var(--ease); position: relative;
+    }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: -3px; left: 0;
+      height: 1px; width: 0; background: var(--green);
+      transition: width 0.3s var(--ease);
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--green); }
+    .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+
+    /* ── Page intro ── */
+    .page-intro {
+      padding: 10rem 4rem 5rem;
+      max-width: 1100px; margin: 0 auto;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .page-eyebrow {
+      font-size: 0.75rem; font-weight: 500;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--green); margin-bottom: 1.5rem;
+      display: flex; align-items: center; gap: 0.6rem;
+    }
+    .page-eyebrow span { display: inline-block; width: 24px; height: 1px; background: var(--green); }
+
+    .page-title {
+      font-family: var(--serif);
+      font-size: clamp(2.5rem, 5vw, 4.5rem);
+      font-weight: 300; letter-spacing: -0.02em;
+      line-height: 1.08; margin-bottom: 1.5rem;
+    }
+
+    .page-desc {
+      font-size: 1rem; color: var(--ink-soft);
+      max-width: 460px; line-height: 1.8;
+    }
+
+    /* ── Content ── */
+    .content {
+      max-width: 1100px; margin: 0 auto;
+      padding: 5rem 4rem 6rem;
+    }
+
+    /* ── Count ── */
+    .reads-meta {
+      font-size: 0.75rem; font-weight: 500;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--ink-mute); margin-bottom: 2rem;
+    }
+
+    /* ── Reads list ── */
+    .reads-list {
+      display: flex; flex-direction: column;
+      gap: 1px; background: var(--border);
+    }
+
+    .read-row {
+      background: var(--bg-2);
+      padding: 2rem 2.5rem;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      grid-template-rows: auto auto;
+      gap: 0.3rem 2rem;
+      align-items: start;
+      text-decoration: none;
+      position: relative; overflow: hidden;
+      transition: background 0.25s var(--ease);
+    }
+
+    .read-row::before {
+      content: ''; position: absolute;
+      top: 0; left: 0; height: 2px; width: 0;
+      background: var(--green);
+      transition: width 0.4s var(--ease);
+    }
+    .read-row:hover { background: var(--bg-3); }
+    .read-row:hover::before { width: 100%; }
+
+    .read-title {
+      font-family: var(--serif);
+      font-size: 1.35rem; font-weight: 400;
+      color: var(--ink); line-height: 1.25;
+      grid-column: 1; grid-row: 1;
+      transition: color 0.25s ease;
+    }
+    .read-row:hover .read-title { color: var(--green); }
+
+    .read-source {
+      font-size: 0.75rem; font-weight: 500;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--green);
+      grid-column: 2; grid-row: 1;
+      white-space: nowrap; padding-top: 0.2rem;
+    }
+
+    .read-note {
+      font-size: 0.88rem; color: var(--ink-soft);
+      line-height: 1.7;
+      grid-column: 1; grid-row: 2;
+      max-width: 680px;
+    }
+
+    .read-arrow {
+      grid-column: 2; grid-row: 2;
+      font-size: 0.82rem; color: var(--ink-mute);
+      align-self: end;
+      transition: color 0.25s ease, transform 0.25s ease;
+    }
+    .read-row:hover .read-arrow {
+      color: var(--green);
+      transform: translate(2px, -2px);
+    }
+
+    /* ── Empty state ── */
+    .empty-state {
+      padding: 5rem 0; text-align: center;
+      color: var(--ink-mute); font-size: 0.9rem;
+    }
+
+    /* ── Footer ── */
+    .site-footer {
+      border-top: 1px solid var(--border);
+      padding: 3rem 4rem; max-width: 1100px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+
+    .footer-left { font-family: var(--serif); font-size: 1rem; color: var(--ink-mute); }
+    .footer-links { display: flex; gap: 1.75rem; list-style: none; }
+    .footer-links a { font-size: 0.82rem; color: var(--ink-mute); text-decoration: none; transition: color 0.3s ease; }
+    .footer-links a:hover { color: var(--green); }
+
+    /* ── Admin panel ── */
+    .admin-panel {
+      display: none;
+      position: fixed; inset: 0; z-index: 200;
+      background: rgba(7, 12, 9, 0.92);
+      backdrop-filter: blur(12px);
+      align-items: center; justify-content: center;
+      padding: 2rem;
+    }
+    .admin-panel.open { display: flex; }
+
+    .admin-box {
+      background: var(--bg-2);
+      border: 1px solid rgba(82, 183, 136, 0.25);
+      padding: 3rem; width: 100%; max-width: 600px;
+      max-height: 90vh; overflow-y: auto;
+    }
+
+    .admin-title {
+      font-family: var(--serif); font-size: 1.6rem;
+      font-weight: 300; color: var(--ink);
+      margin-bottom: 0.4rem;
+    }
+    .admin-subtitle {
+      font-size: 0.8rem; color: var(--ink-mute);
+      margin-bottom: 2rem; line-height: 1.6;
+    }
+
+    .field { margin-bottom: 1.25rem; }
+    .field label {
+      display: block; font-size: 0.72rem; font-weight: 500;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--green); margin-bottom: 0.4rem;
+    }
+    .field input,
+    .field textarea {
+      width: 100%;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--ink); font-family: var(--sans);
+      font-size: 0.9rem; font-weight: 300;
+      padding: 0.65rem 0.9rem;
+      border-radius: 2px;
+      outline: none;
+      transition: border-color 0.2s ease;
+    }
+    .field input:focus,
+    .field textarea:focus { border-color: var(--green); }
+    .field textarea { resize: vertical; min-height: 80px; line-height: 1.6; }
+
+    .admin-actions { display: flex; gap: 0.75rem; margin-top: 1.75rem; flex-wrap: wrap; }
+
+    .btn-admin {
+      padding: 0.65rem 1.4rem;
+      font-family: var(--sans); font-size: 0.82rem; font-weight: 500;
+      border-radius: 2px; cursor: pointer;
+      transition: all 0.2s ease; border: none;
+    }
+    .btn-generate {
+      background: var(--green); color: #0D1510;
+    }
+    .btn-generate:hover { background: #3d9b6e; }
+    .btn-close {
+      background: transparent; color: var(--ink-mute);
+      border: 1px solid var(--border) !important;
+      border-radius: 2px;
+    }
+    .btn-close:hover { border-color: var(--green) !important; color: var(--green); }
+
+    .json-output { display: none; margin-top: 1.5rem; }
+    .json-output.visible { display: block; }
+    .json-output label {
+      display: block; font-size: 0.72rem; font-weight: 500;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--ink-mute); margin-bottom: 0.5rem;
+    }
+    .json-output pre {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      padding: 1rem; font-size: 0.78rem;
+      color: var(--green); line-height: 1.6;
+      overflow-x: auto; white-space: pre-wrap;
+      word-break: break-all;
+    }
+    .btn-copy {
+      margin-top: 0.75rem;
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--ink-mute);
+      font-family: var(--sans); font-size: 0.78rem;
+      cursor: pointer; border-radius: 2px;
+      transition: all 0.2s ease;
+    }
+    .btn-copy:hover { border-color: var(--green); color: var(--green); }
+    .btn-copy.copied { border-color: var(--green); color: var(--green); }
+
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.75s ease, transform 0.75s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    @media (max-width: 768px) {
+      nav { padding: 1.2rem 1.5rem; }
+      .page-intro, .content { padding-left: 1.5rem; padding-right: 1.5rem; }
+      .read-row {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto;
+      }
+      .read-source { grid-column: 1; grid-row: 2; padding-top: 0; margin-top: 0.25rem; }
+      .read-note { grid-row: 3; }
+      .read-arrow { display: none; }
+      .site-footer { flex-direction: column; gap: 1.25rem; padding: 2rem 1.5rem; text-align: center; }
+      .admin-box { padding: 2rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="nav-name" href="index.html">Amit Baghel</a>
+    <ul class="nav-links">
+      <li><a href="work.html">Work</a></li>
+      <li><a href="reads.html" class="active">Reads</a></li>
+      <li><a href="https://github.com/abaghel06" target="_blank" rel="noopener">GitHub</a></li>
+      <li><a href="https://linkedin.com/in/abaghel06" target="_blank" rel="noopener">LinkedIn</a></li>
+    </ul>
+  </nav>
+
+  <div class="page-intro">
+    <p class="page-eyebrow"><span></span> Reading list</p>
+    <h1 class="page-title">Things worth<br>reading</h1>
+    <p class="page-desc">Articles, essays, and papers I've found genuinely useful — not a firehose, just the ones that stuck.</p>
+  </div>
+
+  <div class="content">
+    <p class="reads-meta reveal" id="reads-count">Loading…</p>
+    <div class="reads-list reveal" id="reads-list"></div>
+  </div>
+
+  <footer>
+    <div class="site-footer">
+      <span class="footer-left">Amit Kumar Baghel</span>
+      <ul class="footer-links">
+        <li><a href="mailto:amit.baghel.agra@gmail.com">Email</a></li>
+        <li><a href="https://github.com/abaghel06" target="_blank" rel="noopener">GitHub</a></li>
+        <li><a href="https://linkedin.com/in/abaghel06" target="_blank" rel="noopener">LinkedIn</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <!-- Admin Panel (open via reads.html#admin) -->
+  <div class="admin-panel" id="adminPanel">
+    <div class="admin-box">
+      <h2 class="admin-title">Add a link</h2>
+      <p class="admin-subtitle">
+        Fill in the fields → Generate JSON → copy the object → paste it into <code>reads.json</code> (inside the array) → git push.
+      </p>
+
+      <div class="field">
+        <label for="f-title">Title</label>
+        <input type="text" id="f-title" placeholder="Article or essay title" />
+      </div>
+      <div class="field">
+        <label for="f-url">URL</label>
+        <input type="url" id="f-url" placeholder="https://…" />
+      </div>
+      <div class="field">
+        <label for="f-source">Source</label>
+        <input type="text" id="f-source" placeholder="Publication, blog, author…" />
+      </div>
+      <div class="field">
+        <label for="f-note">Note</label>
+        <textarea id="f-note" placeholder="Why is it worth reading?"></textarea>
+      </div>
+
+      <div class="admin-actions">
+        <button class="btn-admin btn-generate" onclick="generateJSON()">Generate JSON</button>
+        <button class="btn-admin btn-close" onclick="closeAdmin()">Close</button>
+      </div>
+
+      <div class="json-output" id="jsonOutput">
+        <label>Paste this object into reads.json (inside the [ ] array):</label>
+        <pre id="jsonPre"></pre>
+        <button class="btn-copy" id="copyBtn" onclick="copyJSON()">Copy to clipboard</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ── Load reads ──────────────────────────────────────────────────────────
+    async function loadReads() {
+      const list = document.getElementById('reads-list');
+      const count = document.getElementById('reads-count');
+
+      try {
+        const res = await fetch('reads.json');
+        if (!res.ok) throw new Error('not found');
+        const reads = await res.json();
+
+        if (!reads.length) {
+          list.innerHTML = '<div class="empty-state">Nothing here yet.</div>';
+          count.textContent = '0 links';
+          return;
+        }
+
+        count.textContent = reads.length + ' link' + (reads.length !== 1 ? 's' : '');
+
+        list.innerHTML = reads.map(r => `
+          <a class="read-row" href="${escHtml(r.url)}" target="_blank" rel="noopener noreferrer">
+            <span class="read-title">${escHtml(r.title)}</span>
+            <span class="read-source">${escHtml(r.source)}</span>
+            <span class="read-note">${escHtml(r.note)}</span>
+            <span class="read-arrow">↗</span>
+          </a>
+        `).join('');
+      } catch {
+        list.innerHTML = '<div class="empty-state">Couldn\'t load reads.json — make sure the file exists in the same directory.</div>';
+        count.textContent = '';
+      }
+    }
+
+    function escHtml(str) {
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+
+    // ── Reveal on scroll ────────────────────────────────────────────────────
+    const io = new IntersectionObserver(
+      entries => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } }),
+      { threshold: 0.1 }
+    );
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+    // ── Admin panel ─────────────────────────────────────────────────────────
+    function checkHash() {
+      if (window.location.hash === '#admin') {
+        document.getElementById('adminPanel').classList.add('open');
+      } else {
+        document.getElementById('adminPanel').classList.remove('open');
+      }
+    }
+
+    function closeAdmin() {
+      history.pushState('', document.title, window.location.pathname);
+      document.getElementById('adminPanel').classList.remove('open');
+    }
+
+    window.addEventListener('hashchange', checkHash);
+    checkHash();
+
+    // Close on backdrop click
+    document.getElementById('adminPanel').addEventListener('click', function(e) {
+      if (e.target === this) closeAdmin();
+    });
+
+    // ── JSON generator ──────────────────────────────────────────────────────
+    function generateJSON() {
+      const obj = {
+        title:  document.getElementById('f-title').value.trim(),
+        url:    document.getElementById('f-url').value.trim(),
+        source: document.getElementById('f-source').value.trim(),
+        note:   document.getElementById('f-note').value.trim()
+      };
+
+      if (!obj.title || !obj.url) {
+        alert('Title and URL are required.');
+        return;
+      }
+
+      const json = JSON.stringify(obj, null, 2);
+      document.getElementById('jsonPre').textContent = json;
+      document.getElementById('jsonOutput').classList.add('visible');
+      document.getElementById('copyBtn').textContent = 'Copy to clipboard';
+      document.getElementById('copyBtn').classList.remove('copied');
+    }
+
+    function copyJSON() {
+      const text = document.getElementById('jsonPre').textContent;
+      navigator.clipboard.writeText(text).then(() => {
+        const btn = document.getElementById('copyBtn');
+        btn.textContent = 'Copied ✓';
+        btn.classList.add('copied');
+      });
+    }
+
+    loadReads();
+  </script>
+</body>
+</html>
