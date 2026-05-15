@@ -49,9 +49,17 @@
     }
 
     .nav-name {
-      font-family: var(--serif); font-size: 1.15rem;
-      font-weight: 400; color: var(--ink); text-decoration: none;
+      /* Option A — Fraunces (active) */
+      font-family: 'Fraunces', serif; font-size: 1.1rem;
+      font-weight: 300; font-style: italic;
+      color: var(--ink); text-decoration: none; letter-spacing: 0.01em;
+
+      /* Option B — DM Serif Display (swap in to try)
+      font-family: 'DM Serif Display', serif; font-size: 1.1rem;
+      font-weight: 400; font-style: italic;
+      color: var(--ink); text-decoration: none; letter-spacing: 0.03em; */
     }
+
 
     .nav-links { display: flex; gap: 2.5rem; list-style: none; }
     .nav-links a {
