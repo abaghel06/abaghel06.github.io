@@ -4,254 +4,73 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Work — Amit Baghel</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=Fraunces:ital,opsz,wght@1,9..144,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
   <style>
-    :root {
-      --bg:         #0D1510;
-      --bg-2:       #131D17;
-      --bg-3:       #1A2620;
-      --border:     rgba(82, 183, 136, 0.12);
-      --ink:        #E4EDE8;
-      --ink-soft:   #9CB5A8;
-      --ink-mute:   #5A7A6A;
-      --green:      #52B788;
-      --green-dim:  rgba(82, 183, 136, 0.1);
-      --serif:      'Cormorant Garamond', Georgia, serif;
-      --sans:       'DM Sans', system-ui, sans-serif;
-      --ease:       cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-
-    body {
-      background: var(--bg); color: var(--ink);
-      font-family: var(--sans); font-weight: 300;
-      line-height: 1.75; -webkit-font-smoothing: antialiased;
-    }
-
-    body::before {
-      content: ''; position: fixed; inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-      pointer-events: none; z-index: 9999; opacity: 0.5;
-    }
-
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 1.4rem 4rem;
-      background: rgba(13, 21, 16, 0.82);
-      backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .nav-name {
-      /* Option A — Fraunces (active) */
-      font-family: 'Fraunces', serif; font-size: 1.1rem;
-      font-weight: 300; font-style: italic;
-      color: var(--ink); text-decoration: none; letter-spacing: 0.01em;
-
-      /* Option B — DM Serif Display (swap in to try)
-      font-family: 'DM Serif Display', serif; font-size: 1.1rem;
-      font-weight: 400; font-style: italic;
-      color: var(--ink); text-decoration: none; letter-spacing: 0.03em; */
-    }
-
-    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
-    .nav-links a {
-      font-size: 0.82rem; color: var(--ink-soft); text-decoration: none;
-      letter-spacing: 0.07em; text-transform: uppercase;
-      transition: color 0.3s var(--ease); position: relative;
-    }
-    .nav-links a::after {
-      content: ''; position: absolute; bottom: -3px; left: 0;
-      height: 1px; width: 0; background: var(--green);
-      transition: width 0.3s var(--ease);
-    }
-    .nav-links a:hover, .nav-links a.active { color: var(--green); }
-    .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
-
-    /* ── Page intro ── */
-    .page-intro {
-      padding: 10rem 4rem 5rem;
-      max-width: 1100px; margin: 0 auto;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .page-eyebrow {
-      font-size: 0.75rem; font-weight: 500;
-      letter-spacing: 0.14em; text-transform: uppercase;
-      color: var(--green); margin-bottom: 1.5rem;
-      display: flex; align-items: center; gap: 0.6rem;
-    }
-    .page-eyebrow span { display: inline-block; width: 24px; height: 1px; background: var(--green); }
-
-    .page-title {
-      font-family: var(--serif);
-      font-size: clamp(2.5rem, 5vw, 4.5rem);
-      font-weight: 300; letter-spacing: -0.02em;
-      line-height: 1.08; margin-bottom: 1.5rem;
-    }
-
-    .page-desc {
-      font-size: 1rem; color: var(--ink-soft);
-      max-width: 460px; line-height: 1.8;
-    }
-
-    /* ── Content ── */
     .content { max-width: 1100px; margin: 0 auto; padding: 0 4rem 6rem; }
 
     /* ── Experience ── */
     .exp-block { padding: 5rem 0; border-bottom: 1px solid var(--border); }
-
     .block-label {
       font-size: 0.72rem; font-weight: 500;
       letter-spacing: 0.14em; text-transform: uppercase;
       color: var(--ink-mute); margin-bottom: 3rem;
     }
-
     .exp-top {
       display: flex; align-items: flex-start;
-      justify-content: space-between; gap: 2rem;
-      margin-bottom: 0.4rem;
+      justify-content: space-between; gap: 2rem; margin-bottom: 0.4rem;
     }
-
-    .exp-title {
-      font-family: var(--serif); font-size: 2rem;
-      font-weight: 400; color: var(--ink);
-    }
-
-    .exp-period {
-      font-size: 0.82rem; color: var(--ink-mute);
-      white-space: nowrap; padding-top: 0.5rem;
-    }
-
-    .exp-co {
-      font-size: 0.88rem; font-weight: 500;
-      color: var(--green); margin-bottom: 0.25rem;
-    }
-
-    .exp-meta {
-      font-size: 0.8rem; color: var(--ink-mute); margin-bottom: 2.5rem;
-    }
-
-    .exp-story {
-      font-size: 0.95rem; color: var(--ink-soft);
-      line-height: 1.9; max-width: 760px;
-      margin-bottom: 2rem;
-    }
-
+    .exp-title { font-family: var(--serif); font-size: 2rem; font-weight: 400; }
+    .exp-period { font-size: 0.82rem; color: var(--ink-mute); white-space: nowrap; padding-top: 0.5rem; }
+    .exp-co { font-size: 0.88rem; font-weight: 500; color: var(--green); margin-bottom: 0.25rem; }
+    .exp-meta { font-size: 0.8rem; color: var(--ink-mute); margin-bottom: 2.5rem; }
+    .exp-story { font-size: 0.95rem; color: var(--ink-soft); line-height: 1.9; max-width: 760px; margin-bottom: 2rem; }
     .exp-story strong { color: var(--ink); font-weight: 500; }
-
     .exp-highlight {
       display: inline-flex; align-items: baseline; gap: 0.5rem;
       padding: 0.6rem 1.2rem;
       background: var(--green-dim);
-      border: 1px solid rgba(82,183,136,0.2);
-      border-radius: 2px;
+      border: 1px solid rgba(82,183,136,0.2); border-radius: 2px;
     }
-
-    .exp-highlight-num {
-      font-family: var(--serif); font-size: 2rem;
-      font-weight: 300; color: var(--green); line-height: 1;
-    }
-
-    .exp-highlight-label {
-      font-size: 0.82rem; color: var(--ink-soft);
-    }
+    .exp-highlight-num { font-family: var(--serif); font-size: 2rem; font-weight: 300; color: var(--green); line-height: 1; }
+    .exp-highlight-label { font-size: 0.82rem; color: var(--ink-soft); }
 
     /* ── Projects ── */
     .proj-block { padding: 5rem 0; border-bottom: 1px solid var(--border); }
-
     .proj-card {
       background: var(--bg-2); padding: 3rem;
       margin-bottom: 1px; position: relative;
       overflow: hidden; transition: background 0.3s ease;
     }
     .proj-card:hover { background: var(--bg-3); }
-
     .proj-card::before {
       content: ''; position: absolute;
       top: 0; left: 0; height: 2px; width: 0;
-      background: var(--green);
-      transition: width 0.4s var(--ease);
+      background: var(--green); transition: width 0.4s var(--ease);
     }
     .proj-card:hover::before { width: 100%; }
-
-    .proj-tag {
-      font-size: 0.72rem; font-weight: 500;
-      letter-spacing: 0.1em; text-transform: uppercase;
-      color: var(--green); margin-bottom: 0.75rem;
-    }
-
-    .proj-name {
-      font-family: var(--serif); font-size: 1.75rem;
-      font-weight: 400; color: var(--ink);
-      margin-bottom: 1rem; line-height: 1.2;
-    }
-
-    .proj-story {
-      font-size: 0.95rem; color: var(--ink-soft);
-      line-height: 1.9; max-width: 680px; margin-bottom: 1.75rem;
-    }
-
+    .proj-tag { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--green); margin-bottom: 0.75rem; }
+    .proj-name { font-family: var(--serif); font-size: 1.75rem; font-weight: 400; color: var(--ink); margin-bottom: 1rem; line-height: 1.2; }
+    .proj-story { font-size: 0.95rem; color: var(--ink-soft); line-height: 1.9; max-width: 680px; margin-bottom: 1.75rem; }
     .proj-story strong { color: var(--ink); font-weight: 500; }
-
     .chips { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 2rem; }
-
-    .chip {
-      font-size: 0.7rem; padding: 0.2rem 0.6rem;
-      background: var(--green-dim); color: var(--green);
-      border: 1px solid rgba(82,183,136,0.2); border-radius: 1px;
-    }
-
-    .proj-link {
-      font-size: 0.82rem; font-weight: 500;
-      color: var(--ink-mute); text-decoration: none;
-      display: inline-flex; align-items: center; gap: 0.4rem;
-      transition: color 0.3s ease;
-    }
+    .chip { font-size: 0.7rem; padding: 0.2rem 0.6rem; background: var(--green-dim); color: var(--green); border: 1px solid rgba(82,183,136,0.2); border-radius: 1px; }
+    .proj-link { font-size: 0.82rem; font-weight: 500; color: var(--ink-mute); text-decoration: none; display: inline-flex; align-items: center; gap: 0.4rem; transition: color 0.3s ease; }
     .proj-link:hover { color: var(--green); }
     .proj-link::after { content: '↗'; }
 
     /* ── Skills ── */
     .skills-block { padding: 5rem 0; border-bottom: 1px solid var(--border); }
-
-    .skills-grid {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 1px; background: var(--border);
-    }
-
-    .skill-row {
-      background: var(--bg); padding: 1.4rem 1.75rem;
-      display: flex; gap: 1.25rem; align-items: baseline;
-      transition: background 0.3s ease;
-    }
+    .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); }
+    .skill-row { background: var(--bg); padding: 1.4rem 1.75rem; display: flex; gap: 1.25rem; align-items: baseline; transition: background 0.3s ease; }
     .skill-row:hover { background: var(--bg-2); }
-
-    .skill-label {
-      font-size: 0.75rem; font-weight: 500;
-      letter-spacing: 0.08em; text-transform: uppercase;
-      color: var(--green); min-width: 120px; flex-shrink: 0;
-    }
-
+    .skill-label { font-size: 0.75rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--green); min-width: 120px; flex-shrink: 0; }
     .skill-value { font-size: 0.88rem; color: var(--ink-soft); line-height: 1.6; }
 
     /* ── Certs ── */
     .certs-block { padding: 5rem 0; border-bottom: 1px solid var(--border); }
-
     .cert-list { display: flex; flex-direction: column; gap: 1px; background: var(--border); }
-
-    .cert-row {
-      background: var(--bg); padding: 1.4rem 1.75rem;
-      display: flex; align-items: center;
-      justify-content: space-between; gap: 1.5rem;
-      transition: background 0.3s ease;
-    }
+    .cert-row { background: var(--bg); padding: 1.4rem 1.75rem; display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; transition: background 0.3s ease; }
     .cert-row:hover { background: var(--bg-2); }
-
     .cert-name { font-size: 0.92rem; color: var(--ink); margin-bottom: 0.2rem; }
     .cert-issuer { font-size: 0.78rem; color: var(--ink-mute); }
     .cert-date { font-size: 0.78rem; color: var(--green); white-space: nowrap; }
@@ -259,72 +78,40 @@
     /* ── CTA ── */
     .cta-block {
       margin-top: 4rem; padding: 3rem;
-      background: var(--bg-2);
-      border: 1px solid var(--border);
-      display: flex; align-items: center;
-      justify-content: space-between; gap: 2rem;
+      background: var(--bg-2); border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between; gap: 2rem;
     }
-
-    .cta-text {
-      font-family: var(--serif); font-size: 1.6rem;
-      font-weight: 300; color: var(--ink); line-height: 1.3;
-    }
-
+    .cta-text { font-family: var(--serif); font-size: 1.6rem; font-weight: 300; line-height: 1.3; }
     .cta-text em { font-style: italic; color: var(--green); }
 
-    .btn {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      padding: 0.8rem 1.8rem;
-      font-family: var(--sans); font-size: 0.85rem;
-      font-weight: 500; letter-spacing: 0.03em;
-      text-decoration: none; border-radius: 2px;
-      transition: all 0.3s var(--ease); white-space: nowrap;
-    }
-
-    .btn-primary {
-      background: var(--green); color: #0D1510;
-      border: 1px solid var(--green);
-    }
-    .btn-primary:hover {
-      background: #3d9b6e; border-color: #3d9b6e;
-      transform: translateY(-2px);
-      box-shadow: 0 8px 28px rgba(82,183,136,0.25);
-    }
-
-    /* ── Footer ── */
-    .site-footer {
-      border-top: 1px solid var(--border);
-      padding: 3rem 4rem; max-width: 1100px; margin: 0 auto;
-      display: flex; align-items: center; justify-content: space-between;
-    }
-
-    .footer-left { font-family: var(--serif); font-size: 1rem; color: var(--ink-mute); }
-    .footer-links { display: flex; gap: 1.75rem; list-style: none; }
-    .footer-links a { font-size: 0.82rem; color: var(--ink-mute); text-decoration: none; transition: color 0.3s ease; }
-    .footer-links a:hover { color: var(--green); }
-
-    .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.75s ease, transform 0.75s ease; }
-    .reveal.visible { opacity: 1; transform: none; }
-
     @media (max-width: 768px) {
-      nav { padding: 1.2rem 1.5rem; }
-      .page-intro, .content { padding-left: 1.5rem; padding-right: 1.5rem; }
+      .content { padding-left: 1.5rem; padding-right: 1.5rem; }
       .skills-grid { grid-template-columns: 1fr; }
       .skill-row { flex-direction: column; gap: 0.3rem; }
       .cta-block { flex-direction: column; align-items: flex-start; }
-      .site-footer { flex-direction: column; gap: 1.25rem; padding: 2rem 1.5rem; text-align: center; }
     }
   </style>
 </head>
 <body>
 
   <nav>
-    <a class="nav-name" href="index.html">Amit Baghel</a>
+    <a class="nav-name" href="index.html">
+      <span class="name-full">Amit Baghel</span>
+      <span class="name-initials">AB</span>
+    </a>
     <ul class="nav-links">
       <li><a href="work.html" class="active">Work</a></li>
       <li><a href="reads.html">Reads</a></li>
-      <li><a href="https://github.com/abaghel06" target="_blank" rel="noopener">GitHub</a></li>
-      <li><a href="https://linkedin.com/in/abaghel06" target="_blank" rel="noopener">LinkedIn</a></li>
+      <li>
+        <a class="nav-icon" href="https://github.com/abaghel06" target="_blank" rel="noopener" aria-label="GitHub">
+          <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+        </a>
+      </li>
+      <li>
+        <a class="nav-icon" href="https://linkedin.com/in/abaghel06" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        </a>
+      </li>
     </ul>
   </nav>
 
@@ -336,7 +123,6 @@
 
   <div class="content">
 
-    <!-- Experience -->
     <div class="exp-block reveal">
       <p class="block-label">Where I've worked</p>
       <div class="exp-top">
@@ -345,40 +131,24 @@
       </div>
       <p class="exp-co">Automation Engineer</p>
       <p class="exp-meta">Working with Citibank · EUC Remediation & Compliance · Delhi-NCR</p>
-
-      <p class="exp-story">
-        My main project was Citibank's <strong>EUC Remediation Framework</strong> — a system that tracks and manages high-risk spreadsheets and tools across the bank to bring them in line with regulatory standards. I built out the Appian workflows, interfaces, approval chains, and audit trails that made the whole lifecycle run.
-      </p>
-      <p class="exp-story">
-        The piece I'm most proud of: I noticed the existing remediation process had a lot of unnecessary back-and-forth, so I redesigned the approach by integrating <strong>KNIME analytics</strong> directly into the Appian workflow. The result was dramatically faster processing and cleaner exception handling.
-      </p>
-
+      <p class="exp-story">My main project was Citibank's <strong>EUC Remediation Framework</strong> — a system that tracks and manages high-risk spreadsheets and tools across the bank to bring them in line with regulatory standards. I built out the Appian workflows, interfaces, approval chains, and audit trails that made the whole lifecycle run.</p>
+      <p class="exp-story">The piece I'm most proud of: I noticed the existing remediation process had a lot of unnecessary back-and-forth, so I redesigned the approach by integrating <strong>KNIME analytics</strong> directly into the Appian workflow. The result was dramatically faster processing and cleaner exception handling.</p>
       <div class="exp-highlight">
         <span class="exp-highlight-num">66%</span>
         <span class="exp-highlight-label">reduction in remediation cycle time · became the standard approach for the client</span>
       </div>
     </div>
 
-    <!-- Projects -->
     <div class="proj-block reveal">
       <p class="block-label">Projects</p>
 
       <div class="proj-card">
         <p class="proj-tag">Personal Project</p>
         <h3 class="proj-name">LoanIQ — Intelligent Loan Approval Assistant</h3>
-        <p class="proj-story">
-          Loan decisions aren't just about a credit score — they involve income stability, debt ratios, regulatory compliance, and edge cases that break simple rules. LoanIQ automates that entire evaluation with a <strong>pipeline of four specialised AI agents</strong>, each responsible for one layer.
-        </p>
-        <p class="proj-story">
-          An Applicant Profile Agent, Financial Risk Agent, Loan Decision Agent, and Compliance Agent work in sequence — each backed by its own MCP server. The output is a structured decision (Approve / Reject / Manual Review) with a risk score, confidence level, and a compliance case ID. Built on LangGraph orchestration with Claude as the reasoning engine.
-        </p>
+        <p class="proj-story">Loan decisions aren't just about a credit score — they involve income stability, debt ratios, regulatory compliance, and edge cases that break simple rules. LoanIQ automates that entire evaluation with a <strong>pipeline of four specialised AI agents</strong>, each responsible for one layer.</p>
+        <p class="proj-story">An Applicant Profile Agent, Financial Risk Agent, Loan Decision Agent, and Compliance Agent work in sequence — each backed by its own MCP server. The output is a structured decision (Approve / Reject / Manual Review) with a risk score, confidence level, and a compliance case ID.</p>
         <div class="chips">
-          <span class="chip">LangGraph</span>
-          <span class="chip">Claude (Anthropic)</span>
-          <span class="chip">FastMCP</span>
-          <span class="chip">FastAPI</span>
-          <span class="chip">Streamlit</span>
-          <span class="chip">Python</span>
+          <span class="chip">LangGraph</span><span class="chip">Claude (Anthropic)</span><span class="chip">FastMCP</span><span class="chip">FastAPI</span><span class="chip">Streamlit</span><span class="chip">Python</span>
         </div>
         <a href="https://github.com/abaghel06/LoanIQ---Intelligent-Load-Approval-Assistant" target="_blank" rel="noopener" class="proj-link">View on GitHub</a>
       </div>
@@ -386,18 +156,10 @@
       <div class="proj-card">
         <p class="proj-tag">AWS-Wipro Codeathon</p>
         <h3 class="proj-name">Revenue Leakage Finder</h3>
-        <p class="proj-story">
-          Telecom companies lose money every day to billing gaps they don't even know exist — usage that never got billed, pricing rules applied wrong, payments that failed silently. This project builds an <strong>agentic system that hunts those anomalies automatically</strong>.
-        </p>
-        <p class="proj-story">
-          I designed the architecture and used Amazon Kiro to guide the build — a multi-agent setup where different agents handle reconciliation, reasoning, and reporting. It pulls from billing systems, CRM, and payment gateways, then surfaces what doesn't add up.
-        </p>
+        <p class="proj-story">Telecom companies lose money every day to billing gaps they don't even know exist — usage that never got billed, pricing rules applied wrong, payments that failed silently. This project builds an <strong>agentic system that hunts those anomalies automatically</strong>.</p>
+        <p class="proj-story">I designed the architecture and used Amazon Kiro to guide the build — a multi-agent setup where different agents handle reconciliation, reasoning, and reporting.</p>
         <div class="chips">
-          <span class="chip">LangGraph</span>
-          <span class="chip">Amazon Bedrock</span>
-          <span class="chip">Python</span>
-          <span class="chip">FastAPI</span>
-          <span class="chip">Docker</span>
+          <span class="chip">LangGraph</span><span class="chip">Amazon Bedrock</span><span class="chip">Python</span><span class="chip">FastAPI</span><span class="chip">Docker</span>
         </div>
         <a href="https://github.com/abaghel06/revenueLeakageFinder" target="_blank" rel="noopener" class="proj-link">View on GitHub</a>
       </div>
@@ -405,104 +167,39 @@
       <div class="proj-card">
         <p class="proj-tag">Personal Project</p>
         <h3 class="proj-name">Food Recommendation System</h3>
-        <p class="proj-story">
-          I wanted to understand how vector search actually works, so I built something I'd use: a food recommendation engine where you can ask questions like <strong>"what's nutritionally similar to chicken breast?"</strong> or "what gives me more iron?" — and get real answers, not keyword matches.
-        </p>
-        <p class="proj-story">
-          The search layer uses embeddings and ChromaDB. The Q&A layer is a RAG pipeline over a nutritional knowledge base — so answers come with sources, not hallucinations.
-        </p>
+        <p class="proj-story">I wanted to understand how vector search actually works, so I built something I'd use: a food recommendation engine where you can ask questions like <strong>"what's nutritionally similar to chicken breast?"</strong> or "what gives me more iron?" — and get real answers, not keyword matches.</p>
+        <p class="proj-story">The search layer uses embeddings and ChromaDB. The Q&A layer is a RAG pipeline over a nutritional knowledge base — so answers come with sources, not hallucinations.</p>
         <div class="chips">
-          <span class="chip">LangChain</span>
-          <span class="chip">ChromaDB</span>
-          <span class="chip">FAISS</span>
-          <span class="chip">Gradio</span>
-          <span class="chip">Python</span>
+          <span class="chip">LangChain</span><span class="chip">ChromaDB</span><span class="chip">FAISS</span><span class="chip">Gradio</span><span class="chip">Python</span>
         </div>
         <a href="https://github.com/abaghel06/Food-Recommendation-System" target="_blank" rel="noopener" class="proj-link">View on GitHub</a>
       </div>
     </div>
 
-    <!-- Skills -->
     <div class="skills-block reveal">
       <p class="block-label">Technical skills</p>
       <div class="skills-grid">
-        <div class="skill-row">
-          <span class="skill-label">AI & LLM</span>
-          <span class="skill-value">LangChain, LangGraph, RAG, Prompt Engineering, Amazon Bedrock, IBM Watsonx</span>
-        </div>
-        <div class="skill-row">
-          <span class="skill-label">Agentic AI</span>
-          <span class="skill-value">Multi-Agent Systems, Agentic Workflows, Tool Use, ReAct Framework</span>
-        </div>
-        <div class="skill-row">
-          <span class="skill-label">Vector DBs</span>
-          <span class="skill-value">ChromaDB, FAISS, Semantic Search, Embeddings</span>
-        </div>
-        <div class="skill-row">
-          <span class="skill-label">Cloud</span>
-          <span class="skill-value">AWS (Bedrock, S3, Lambda), Microsoft Azure</span>
-        </div>
-        <div class="skill-row">
-          <span class="skill-label">Automation</span>
-          <span class="skill-value">Appian (Certified), KNIME, Low-Code BPM, SAIL</span>
-        </div>
-        <div class="skill-row">
-          <span class="skill-label">Code</span>
-          <span class="skill-value">Python, SQL (Oracle), Bash/Shell Scripting</span>
-        </div>
+        <div class="skill-row"><span class="skill-label">AI & LLM</span><span class="skill-value">LangChain, LangGraph, RAG, Prompt Engineering, Amazon Bedrock, IBM Watsonx</span></div>
+        <div class="skill-row"><span class="skill-label">Agentic AI</span><span class="skill-value">Multi-Agent Systems, Agentic Workflows, Tool Use, ReAct Framework</span></div>
+        <div class="skill-row"><span class="skill-label">Vector DBs</span><span class="skill-value">ChromaDB, FAISS, Semantic Search, Embeddings</span></div>
+        <div class="skill-row"><span class="skill-label">Cloud</span><span class="skill-value">AWS (Bedrock, S3, Lambda), Microsoft Azure</span></div>
+        <div class="skill-row"><span class="skill-label">Automation</span><span class="skill-value">Appian (Certified), KNIME, Low-Code BPM, SAIL</span></div>
+        <div class="skill-row"><span class="skill-label">Code</span><span class="skill-value">Python, SQL (Oracle), Bash/Shell Scripting</span></div>
       </div>
     </div>
 
-    <!-- Certifications -->
     <div class="certs-block reveal">
       <p class="block-label">Certifications</p>
       <div class="cert-list">
-        <div class="cert-row">
-          <div>
-            <p class="cert-name">RAG for Generative AI Applications Specialization</p>
-            <p class="cert-issuer">IBM</p>
-          </div>
-          <span class="cert-date">May 2026</span>
-        </div>
-        <div class="cert-row">
-          <div>
-            <p class="cert-name">Generative AI Learning Plan – Developers (Partner)</p>
-            <p class="cert-issuer">Amazon Web Services</p>
-          </div>
-          <span class="cert-date">Mar 2026</span>
-        </div>
-        <div class="cert-row">
-          <div>
-            <p class="cert-name">Appian Certified Developer</p>
-            <p class="cert-issuer">Appian</p>
-          </div>
-          <span class="cert-date">2023</span>
-        </div>
-        <div class="cert-row">
-          <div>
-            <p class="cert-name">Advanced Proficiency in KNIME Analytics Platform</p>
-            <p class="cert-issuer">KNIME</p>
-          </div>
-          <span class="cert-date">Dec 2022</span>
-        </div>
-        <div class="cert-row">
-          <div>
-            <p class="cert-name">Microsoft Certified: Azure Data Fundamentals</p>
-            <p class="cert-issuer">Microsoft</p>
-          </div>
-          <span class="cert-date">Sep 2022</span>
-        </div>
-        <div class="cert-row">
-          <div>
-            <p class="cert-name">Microsoft Certified: Azure Fundamentals</p>
-            <p class="cert-issuer">Microsoft</p>
-          </div>
-          <span class="cert-date">2022</span>
-        </div>
+        <div class="cert-row"><div><p class="cert-name">RAG for Generative AI Applications Specialization</p><p class="cert-issuer">IBM</p></div><span class="cert-date">May 2026</span></div>
+        <div class="cert-row"><div><p class="cert-name">Generative AI Learning Plan – Developers (Partner)</p><p class="cert-issuer">Amazon Web Services</p></div><span class="cert-date">Mar 2026</span></div>
+        <div class="cert-row"><div><p class="cert-name">Appian Certified Developer</p><p class="cert-issuer">Appian</p></div><span class="cert-date">2023</span></div>
+        <div class="cert-row"><div><p class="cert-name">Advanced Proficiency in KNIME Analytics Platform</p><p class="cert-issuer">KNIME</p></div><span class="cert-date">Dec 2022</span></div>
+        <div class="cert-row"><div><p class="cert-name">Microsoft Certified: Azure Data Fundamentals</p><p class="cert-issuer">Microsoft</p></div><span class="cert-date">Sep 2022</span></div>
+        <div class="cert-row"><div><p class="cert-name">Microsoft Certified: Azure Fundamentals</p><p class="cert-issuer">Microsoft</p></div><span class="cert-date">2022</span></div>
       </div>
     </div>
 
-    <!-- CTA -->
     <div class="cta-block reveal">
       <p class="cta-text">Want the full picture?<br>Here's my <em>resume</em>.</p>
       <a href="assets/resume.pdf" class="btn btn-primary" download>Download PDF ↓</a>
@@ -521,12 +218,6 @@
     </div>
   </footer>
 
-  <script>
-    const io = new IntersectionObserver(
-      entries => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } }),
-      { threshold: 0.1 }
-    );
-    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-  </script>
+  <script src="main.js"></script>
 </body>
 </html>

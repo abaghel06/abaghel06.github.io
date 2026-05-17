@@ -4,89 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Amit Baghel</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=Fraunces:ital,opsz,wght@1,9..144,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
   <style>
-    :root {
-      --bg:         #0D1510;
-      --bg-2:       #131D17;
-      --bg-3:       #1A2620;
-      --border:     rgba(82, 183, 136, 0.12);
-      --ink:        #E4EDE8;
-      --ink-soft:   #9CB5A8;
-      --ink-mute:   #5A7A6A;
-      --green:      #52B788;
-      --green-dim:  rgba(82, 183, 136, 0.1);
-      --green-glow: rgba(82, 183, 136, 0.2);
-      --serif:      'Cormorant Garamond', Georgia, serif;
-      --sans:       'DM Sans', system-ui, sans-serif;
-      --ease:       cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-
-    body {
-      background: var(--bg);
-      color: var(--ink);
-      font-family: var(--sans);
-      font-weight: 300;
-      line-height: 1.75;
-      -webkit-font-smoothing: antialiased;
-      overflow-x: hidden;
-    }
-
-    body::before {
-      content: '';
-      position: fixed; inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-      pointer-events: none; z-index: 9999; opacity: 0.5;
-    }
-
-    /* ── Nav ── */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 1.4rem 4rem;
-      background: rgba(13, 21, 16, 0.82);
-      backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .nav-name {
-      /* Option A — Fraunces (active) */
-      font-family: 'Fraunces', serif; font-size: 1.1rem;
-      font-weight: 300; font-style: italic;
-      color: var(--ink); text-decoration: none; letter-spacing: 0.01em;
-
-      /* Option B — DM Serif Display (swap in to try)
-      font-family: 'DM Serif Display', serif; font-size: 1.1rem;
-      font-weight: 400; font-style: italic;
-      color: var(--ink); text-decoration: none; letter-spacing: 0.03em; */
-    }
-
-    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
-
-    .nav-links a {
-      font-size: 0.82rem; font-weight: 400;
-      color: var(--ink-soft); text-decoration: none;
-      letter-spacing: 0.07em; text-transform: uppercase;
-      transition: color 0.3s var(--ease);
-      position: relative;
-    }
-
-    .nav-links a::after {
-      content: ''; position: absolute;
-      bottom: -3px; left: 0;
-      height: 1px; width: 0;
-      background: var(--green);
-      transition: width 0.3s var(--ease);
-    }
-
-    .nav-links a:hover { color: var(--green); }
-    .nav-links a:hover::after { width: 100%; }
-
     /* ── Hero ── */
     .hero {
       min-height: 100vh;
@@ -95,7 +14,6 @@
       max-width: 1100px; margin: 0 auto;
       position: relative;
     }
-
     .hero::after {
       content: '';
       position: absolute; top: 20%; left: -15%;
@@ -103,7 +21,6 @@
       background: radial-gradient(ellipse, rgba(82,183,136,0.05) 0%, transparent 70%);
       pointer-events: none;
     }
-
     .hero-eyebrow {
       display: flex; align-items: center; gap: 0.6rem;
       font-size: 0.78rem; font-weight: 500;
@@ -111,18 +28,16 @@
       color: var(--green); margin-bottom: 2rem;
       opacity: 0; animation: up 0.8s ease forwards 0.15s;
     }
-
     .hero-eyebrow span { display: inline-block; width: 28px; height: 1px; background: var(--green); }
 
     .hero-headline {
       font-family: var(--serif);
       font-size: clamp(3.2rem, 7.5vw, 6.5rem);
       font-weight: 300; line-height: 1.06;
-      letter-spacing: -0.02em; color: var(--ink);
+      letter-spacing: -0.02em;
       margin-bottom: 2.5rem;
       opacity: 0; animation: up 0.9s ease forwards 0.3s;
     }
-
     .hero-headline em { font-style: italic; color: var(--green); }
 
     .hero-body {
@@ -131,7 +46,6 @@
       margin-bottom: 3rem;
       opacity: 0; animation: up 0.9s ease forwards 0.45s;
     }
-
     .hero-body a {
       color: var(--green); text-decoration: none;
       border-bottom: 1px solid var(--green-glow);
@@ -144,41 +58,12 @@
       opacity: 0; animation: up 0.9s ease forwards 0.6s;
     }
 
-    .btn {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      padding: 0.8rem 1.8rem;
-      font-family: var(--sans); font-size: 0.85rem;
-      font-weight: 500; letter-spacing: 0.03em;
-      text-decoration: none; border-radius: 2px;
-      transition: all 0.3s var(--ease);
-    }
-
-    .btn-primary {
-      background: var(--green); color: #0D1510;
-      border: 1px solid var(--green);
-    }
-    .btn-primary:hover {
-      background: #3d9b6e; border-color: #3d9b6e;
-      transform: translateY(-2px);
-      box-shadow: 0 8px 28px rgba(82,183,136,0.25);
-    }
-
-    .btn-ghost {
-      background: transparent; color: var(--ink-soft);
-      border: 1px solid var(--border);
-    }
-    .btn-ghost:hover {
-      border-color: var(--green); color: var(--green);
-      transform: translateY(-2px);
-    }
-
     .available {
       margin-top: 2.5rem;
       display: flex; align-items: center; gap: 0.6rem;
       font-size: 0.78rem; color: var(--ink-mute);
       opacity: 0; animation: up 0.9s ease forwards 0.75s;
     }
-
     .dot {
       width: 7px; height: 7px; border-radius: 50%;
       background: var(--green);
@@ -192,40 +77,31 @@
       padding: 7rem 4rem;
       max-width: 1100px; margin: 0 auto;
     }
-
     .label {
       font-size: 0.75rem; font-weight: 500;
       letter-spacing: 0.14em; text-transform: uppercase;
       color: var(--green); margin-bottom: 3rem;
     }
-
     .what-grid {
       display: grid; grid-template-columns: repeat(3, 1fr);
       gap: 1px; background: var(--border);
     }
-
     .what-card {
       background: var(--bg); padding: 2.5rem 2rem;
       transition: background 0.3s ease;
     }
     .what-card:hover { background: var(--bg-2); }
-
     .what-number {
       font-family: var(--serif); font-size: 2.8rem;
       font-weight: 300; line-height: 1;
-      color: rgba(82,183,136,0.18);
-      margin-bottom: 1rem;
+      color: rgba(82,183,136,0.18); margin-bottom: 1rem;
     }
-
     .what-title {
       font-family: var(--serif); font-size: 1.35rem;
       font-weight: 400; color: var(--ink);
       margin-bottom: 0.75rem; line-height: 1.3;
     }
-
-    .what-desc {
-      font-size: 0.88rem; color: var(--ink-soft); line-height: 1.8;
-    }
+    .what-desc { font-size: 0.88rem; color: var(--ink-soft); line-height: 1.8; }
 
     /* ── Story ── */
     .story {
@@ -234,59 +110,42 @@
       border-bottom: 1px solid var(--border);
       padding: 7rem 4rem;
     }
-
     .story-inner {
       max-width: 1100px; margin: 0 auto;
       display: grid; grid-template-columns: 1fr 2fr;
       gap: 6rem; align-items: start;
     }
-
     .story-aside { position: sticky; top: 8rem; }
-
     .story-aside-title {
       font-family: var(--serif); font-size: 2.2rem;
-      font-weight: 300; color: var(--ink);
-      line-height: 1.2; margin-bottom: 1.5rem;
+      font-weight: 300; line-height: 1.2; margin-bottom: 1.5rem;
     }
     .story-aside-title em { font-style: italic; color: var(--green); }
-
-    .story-aside-meta {
-      font-size: 0.82rem; color: var(--ink-mute);
-      line-height: 1.7;
-    }
-
+    .story-aside-meta { font-size: 0.82rem; color: var(--ink-mute); line-height: 1.7; }
     .story-body p {
       font-size: 1rem; color: var(--ink-soft);
       line-height: 1.95; margin-bottom: 1.6rem;
     }
     .story-body p:last-child { margin-bottom: 0; }
     .story-body strong { color: var(--ink); font-weight: 500; }
-
     .story-stat {
       font-family: var(--serif); font-size: 2.8rem;
       font-weight: 300; color: var(--green); line-height: 1;
       display: inline-block;
     }
 
-    /* ── Projects preview ── */
-    .projects {
-      padding: 7rem 4rem;
-      max-width: 1100px; margin: 0 auto;
-    }
-
+    /* ── Projects ── */
+    .projects { padding: 7rem 4rem; max-width: 1100px; margin: 0 auto; }
     .section-head {
       display: flex; align-items: baseline;
       justify-content: space-between;
-      padding-bottom: 2rem;
-      border-bottom: 1px solid var(--border);
+      padding-bottom: 2rem; border-bottom: 1px solid var(--border);
       margin-bottom: 3rem;
     }
-
     .section-title {
       font-family: var(--serif); font-size: 2rem;
       font-weight: 300; color: var(--ink);
     }
-
     .see-all {
       font-size: 0.8rem; font-weight: 500;
       letter-spacing: 0.07em; text-transform: uppercase;
@@ -299,19 +158,16 @@
       display: grid; grid-template-columns: 1fr 1fr;
       gap: 1px; background: var(--border);
     }
-
     .proj-card {
       background: var(--bg); padding: 3rem 2.5rem;
       position: relative; overflow: hidden;
       transition: background 0.3s ease;
     }
     .proj-card:hover { background: var(--bg-3); }
-
     .proj-card::before {
       content: ''; position: absolute;
       top: 0; left: 0; height: 2px; width: 0;
-      background: var(--green);
-      transition: width 0.4s var(--ease);
+      background: var(--green); transition: width 0.4s var(--ease);
     }
     .proj-card:hover::before { width: 100%; }
 
@@ -320,26 +176,21 @@
       letter-spacing: 0.1em; text-transform: uppercase;
       color: var(--green); margin-bottom: 0.75rem;
     }
-
     .proj-name {
       font-family: var(--serif); font-size: 1.5rem;
       font-weight: 400; color: var(--ink);
       margin-bottom: 1rem; line-height: 1.25;
     }
-
     .proj-desc {
       font-size: 0.9rem; color: var(--ink-soft);
       line-height: 1.82; margin-bottom: 1.75rem;
     }
-
     .chips { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 2rem; }
-
     .chip {
       font-size: 0.7rem; padding: 0.2rem 0.6rem;
       background: var(--green-dim); color: var(--green);
       border: 1px solid rgba(82,183,136,0.2); border-radius: 1px;
     }
-
     .proj-link {
       font-size: 0.82rem; font-weight: 500;
       color: var(--ink-mute); text-decoration: none;
@@ -349,37 +200,7 @@
     .proj-link:hover { color: var(--green); }
     .proj-link::after { content: '↗'; }
 
-    /* ── Footer ── */
-    .site-footer {
-      border-top: 1px solid var(--border);
-      padding: 3rem 4rem;
-      max-width: 1100px; margin: 0 auto;
-      display: flex; align-items: center;
-      justify-content: space-between;
-    }
-
-    .footer-left { font-family: var(--serif); font-size: 1rem; color: var(--ink-mute); }
-
-    .footer-links { display: flex; gap: 1.75rem; list-style: none; }
-    .footer-links a {
-      font-size: 0.82rem; color: var(--ink-mute);
-      text-decoration: none; transition: color 0.3s ease;
-    }
-    .footer-links a:hover { color: var(--green); }
-
-    /* ── Reveal ── */
-    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.75s ease, transform 0.75s ease; }
-    .reveal.visible { opacity: 1; transform: none; }
-
-    @keyframes up {
-      from { opacity: 0; transform: translateY(18px); }
-      to   { opacity: 1; transform: none; }
-    }
-    @keyframes pulse {
-      0%, 100% { box-shadow: 0 0 0 3px var(--green-glow); }
-      50%       { box-shadow: 0 0 0 7px rgba(82,183,136,0.05); }
-    }
-
+    /* ── Responsive ── */
     @media (max-width: 900px) {
       .what-grid { grid-template-columns: 1fr 1fr; }
       .story-inner { grid-template-columns: 1fr; gap: 2.5rem; }
@@ -387,32 +208,38 @@
       .proj-grid { grid-template-columns: 1fr; }
     }
     @media (max-width: 640px) {
-      nav { padding: 1.2rem 1.5rem; }
-      .nav-links { gap: 1.5rem; }
       .hero, .what, .projects { padding-left: 1.5rem; padding-right: 1.5rem; }
       .story { padding: 4rem 1.5rem; }
       .what-grid { grid-template-columns: 1fr; }
-      .site-footer { flex-direction: column; gap: 1.25rem; padding: 2rem 1.5rem; text-align: center; }
     }
   </style>
 </head>
 <body>
 
   <nav>
-    <a class="nav-name" href="index.html">Amit Baghel</a>
+    <a class="nav-name" href="index.html">
+      <span class="name-full">Amit Baghel</span>
+      <span class="name-initials">AB</span>
+    </a>
     <ul class="nav-links">
       <li><a href="work.html">Work</a></li>
       <li><a href="reads.html">Reads</a></li>
-      <li><a href="https://github.com/abaghel06" target="_blank" rel="noopener">GitHub</a></li>
-      <li><a href="https://linkedin.com/in/abaghel06" target="_blank" rel="noopener">LinkedIn</a></li>
+      <li>
+        <a class="nav-icon" href="https://github.com/abaghel06" target="_blank" rel="noopener" aria-label="GitHub">
+          <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+        </a>
+      </li>
+      <li>
+        <a class="nav-icon" href="https://linkedin.com/in/abaghel06" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        </a>
+      </li>
     </ul>
   </nav>
 
   <section class="hero">
     <p class="hero-eyebrow"><span></span> Based in Agra, India</p>
-    <h1 class="hero-headline">
-      I build systems<br>that <em>think</em>.
-    </h1>
+    <h1 class="hero-headline">I build systems<br>that <em>think</em>.</h1>
     <p class="hero-body">
       Three years automating enterprise workflows for Citibank taught me how complex business processes really work. Now I'm combining that with <a href="work.html">GenAI engineering</a> — RAG pipelines, multi-agent systems, LLMs — to build smarter automation.
     </p>
@@ -454,15 +281,9 @@
         <p class="story-aside-meta">Agra → Delhi-NCR<br>→ wherever the work is interesting</p>
       </div>
       <div class="story-body">
-        <p>
-          I started out building <strong>Appian-based compliance systems for Citibank</strong> at Wipro — work that meant understanding messy real-world processes and making them actually run reliably. One integration I pioneered cut remediation cycle time by <span class="story-stat">66%</span> and became the go-to approach for the whole client team.
-        </p>
-        <p>
-          A couple of years in, I got curious about what happens when you bring <strong>AI reasoning</strong> into those kinds of systems. Not AI as a chatbot sitting on top of a workflow — but AI as part of the logic itself. That curiosity led me through IBM's RAG Specialization, AWS's GenAI Developer program, and eventually to building things myself.
-        </p>
-        <p>
-          I'm looking for a team where I can combine <strong>enterprise systems thinking</strong> with serious AI engineering. If that sounds like something you're building, I'd love to talk.
-        </p>
+        <p>I started out building <strong>Appian-based compliance systems for Citibank</strong> at Wipro — work that meant understanding messy real-world processes and making them actually run reliably. One integration I pioneered cut remediation cycle time by <span class="story-stat">66%</span> and became the go-to approach for the whole client team.</p>
+        <p>A couple of years in, I got curious about what happens when you bring <strong>AI reasoning</strong> into those kinds of systems. Not AI as a chatbot sitting on top of a workflow — but AI as part of the logic itself. That curiosity led me through IBM's RAG Specialization, AWS's GenAI Developer program, and eventually to building things myself.</p>
+        <p>I'm looking for a team where I can combine <strong>enterprise systems thinking</strong> with serious AI engineering. If that sounds like something you're building, I'd love to talk.</p>
       </div>
     </div>
   </section>
@@ -476,9 +297,7 @@
       <div class="proj-card">
         <p class="proj-tag">Personal Project</p>
         <h3 class="proj-name">LoanIQ — Intelligent Loan Approval Assistant</h3>
-        <p class="proj-desc">
-          Four specialised AI agents — profiling, risk analysis, decision, compliance — work in sequence to evaluate loan applications and return a structured verdict with risk score, confidence level, and a case ID. Built on LangGraph with Claude as the reasoning engine and MCP servers per agent.
-        </p>
+        <p class="proj-desc">Four specialised AI agents — profiling, risk analysis, decision, compliance — work in sequence to evaluate loan applications and return a structured verdict with risk score, confidence level, and a case ID. Built on LangGraph with Claude as the reasoning engine and MCP servers per agent.</p>
         <div class="chips">
           <span class="chip">LangGraph</span>
           <span class="chip">Claude (Anthropic)</span>
@@ -492,9 +311,7 @@
       <div class="proj-card">
         <p class="proj-tag">AWS-Wipro Codeathon</p>
         <h3 class="proj-name">Revenue Leakage Finder</h3>
-        <p class="proj-desc">
-          An agentic system that hunts billing anomalies in telecom data — unbilled usage, pricing mismatches, failed payment cycles. Designed the architecture and built it using Amazon Kiro with a multi-agent setup on Bedrock.
-        </p>
+        <p class="proj-desc">An agentic system that hunts billing anomalies in telecom data — unbilled usage, pricing mismatches, failed payment cycles. Designed the architecture and built it using Amazon Kiro with a multi-agent setup on Bedrock.</p>
         <div class="chips">
           <span class="chip">LangGraph</span>
           <span class="chip">Amazon Bedrock</span>
@@ -507,9 +324,7 @@
       <div class="proj-card">
         <p class="proj-tag">Personal Project</p>
         <h3 class="proj-name">Food Recommendation System</h3>
-        <p class="proj-desc">
-          Ask it "what's similar to this?" or "what should I eat for more protein?" — it actually understands. Built on vector embeddings for semantic search and a RAG pipeline for natural language Q&amp;A over nutritional data.
-        </p>
+        <p class="proj-desc">Ask it "what's similar to this?" or "what should I eat for more protein?" — it actually understands. Built on vector embeddings for semantic search and a RAG pipeline for natural language Q&amp;A over nutritional data.</p>
         <div class="chips">
           <span class="chip">LangChain</span>
           <span class="chip">ChromaDB</span>
@@ -533,12 +348,6 @@
     </div>
   </footer>
 
-  <script>
-    const io = new IntersectionObserver(
-      entries => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } }),
-      { threshold: 0.1 }
-    );
-    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-  </script>
+  <script src="main.js"></script>
 </body>
 </html>
