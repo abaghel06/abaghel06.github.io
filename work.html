@@ -6,89 +6,109 @@
   <title>Work — Amit Baghel</title>
   <link rel="stylesheet" href="style.css" />
   <style>
-    .content { max-width: 1100px; margin: 0 auto; padding: 0 4rem 6rem; }
+    .content { max-width: 1120px; margin: 0 auto; padding: 0 4rem 6rem; }
 
     /* ── Experience ── */
-    .exp-block { padding: 5rem 0; border-bottom: 1px solid var(--border); }
+    .exp-block { padding: 4rem 0; border-bottom: 1px solid var(--border); }
     .block-label {
-      font-size: 0.72rem; font-weight: 500;
-      letter-spacing: 0.14em; text-transform: uppercase;
-      color: var(--ink-mute); margin-bottom: 3rem;
+      display: flex; align-items: center; gap: 0.55rem;
+      font-size: 0.85rem; font-weight: 600;
+      color: var(--green); margin-bottom: 2.5rem;
+    }
+    .block-label span {
+      display: inline-block; width: 7px; height: 7px;
+      border-radius: 50%; background: var(--green);
+      box-shadow: 0 0 0 3px var(--green-glow);
     }
     .exp-top {
       display: flex; align-items: flex-start;
       justify-content: space-between; gap: 2rem; margin-bottom: 0.4rem;
     }
-    .exp-title { font-family: var(--serif); font-size: 2rem; font-weight: 400; }
-    .exp-period { font-size: 0.82rem; color: var(--ink-mute); white-space: nowrap; padding-top: 0.5rem; }
-    .exp-co { font-size: 0.88rem; font-weight: 500; color: var(--green); margin-bottom: 0.25rem; }
-    .exp-meta { font-size: 0.8rem; color: var(--ink-mute); margin-bottom: 2.5rem; }
-    .exp-story { font-size: 0.95rem; color: var(--ink-soft); line-height: 1.9; max-width: 760px; margin-bottom: 2rem; }
-    .exp-story strong { color: var(--ink); font-weight: 500; }
+    .exp-title { font-family: var(--serif); font-size: 2rem; font-weight: 500; }
+    .exp-period { font-size: 0.85rem; color: var(--ink-mute); white-space: nowrap; padding-top: 0.5rem; }
+    .exp-co { font-size: 0.92rem; font-weight: 600; color: var(--green); margin-bottom: 0.25rem; }
+    .exp-meta { font-size: 0.85rem; color: var(--ink-mute); margin-bottom: 2.5rem; }
+    .exp-story { font-size: 0.98rem; color: var(--ink-soft); line-height: 1.9; max-width: 760px; margin-bottom: 2rem; }
+    .exp-story strong { color: var(--ink); font-weight: 600; }
     .exp-highlight {
-      display: inline-flex; align-items: baseline; gap: 0.5rem;
-      padding: 0.6rem 1.2rem;
-      background: var(--green-dim);
-      border: 1px solid rgba(82,183,136,0.2); border-radius: 2px;
+      display: inline-flex; align-items: baseline; gap: 0.6rem;
+      padding: 1rem 1.5rem;
+      background: var(--honey-dim);
+      border-radius: var(--radius-md);
     }
-    .exp-highlight-num { font-family: var(--serif); font-size: 2rem; font-weight: 300; color: var(--green); line-height: 1; }
-    .exp-highlight-label { font-size: 0.82rem; color: var(--ink-soft); }
+    .exp-highlight-num { font-family: var(--serif); font-size: 2rem; font-weight: 500; color: var(--honey); line-height: 1; }
+    .exp-highlight-label { font-size: 0.85rem; color: var(--ink-soft); }
 
     /* ── Projects ── */
-    .proj-block { padding: 5rem 0; border-bottom: 1px solid var(--border); }
+    .proj-block { padding: 4rem 0; border-bottom: 1px solid var(--border); }
+    .proj-block .proj-card:not(:last-child) { margin-bottom: 1.5rem; }
     .proj-card {
-      background: var(--bg-2); padding: 3rem;
-      margin-bottom: 1px; position: relative;
-      overflow: hidden; transition: background 0.3s ease;
+      background: var(--bg-3); padding: 2.75rem 3rem;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease);
     }
-    .proj-card:hover { background: var(--bg-3); }
-    .proj-card::before {
-      content: ''; position: absolute;
-      top: 0; left: 0; height: 2px; width: 0;
-      background: var(--green); transition: width 0.4s var(--ease);
+    .proj-card:hover { transform: translateY(-5px); box-shadow: var(--shadow); }
+    .proj-tag {
+      display: inline-block;
+      font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--green); background: var(--green-dim);
+      padding: 0.3rem 0.7rem; border-radius: var(--radius-pill);
+      margin-bottom: 1.1rem;
     }
-    .proj-card:hover::before { width: 100%; }
-    .proj-tag { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--green); margin-bottom: 0.75rem; }
-    .proj-name { font-family: var(--serif); font-size: 1.75rem; font-weight: 400; color: var(--ink); margin-bottom: 1rem; line-height: 1.2; }
-    .proj-story { font-size: 0.95rem; color: var(--ink-soft); line-height: 1.9; max-width: 680px; margin-bottom: 1.75rem; }
-    .proj-story strong { color: var(--ink); font-weight: 500; }
-    .chips { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 2rem; }
-    .chip { font-size: 0.7rem; padding: 0.2rem 0.6rem; background: var(--green-dim); color: var(--green); border: 1px solid rgba(82,183,136,0.2); border-radius: 1px; }
-    .proj-link { font-size: 0.82rem; font-weight: 500; color: var(--ink-mute); text-decoration: none; display: inline-flex; align-items: center; gap: 0.4rem; transition: color 0.3s ease; }
+    .proj-name { font-family: var(--serif); font-size: 1.75rem; font-weight: 500; color: var(--ink); margin-bottom: 1rem; line-height: 1.3; }
+    .proj-story { font-size: 0.98rem; color: var(--ink-soft); line-height: 1.9; max-width: 680px; margin-bottom: 1.75rem; }
+    .proj-story strong { color: var(--ink); font-weight: 600; }
+    .chips { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2rem; }
+    .chip { font-size: 0.74rem; padding: 0.3rem 0.75rem; background: var(--green-dim); color: var(--green); border-radius: var(--radius-pill); }
+    .proj-link { font-size: 0.88rem; font-weight: 600; color: var(--ink-mute); text-decoration: none; display: inline-flex; align-items: center; gap: 0.4rem; transition: color 0.3s ease; }
     .proj-link:hover { color: var(--green); }
     .proj-link::after { content: '↗'; }
 
     /* ── Skills ── */
-    .skills-block { padding: 5rem 0; border-bottom: 1px solid var(--border); }
-    .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); }
-    .skill-row { background: var(--bg); padding: 1.4rem 1.75rem; display: flex; gap: 1.25rem; align-items: baseline; transition: background 0.3s ease; }
-    .skill-row:hover { background: var(--bg-2); }
-    .skill-label { font-size: 0.75rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--green); min-width: 120px; flex-shrink: 0; }
-    .skill-value { font-size: 0.88rem; color: var(--ink-soft); line-height: 1.6; }
+    .skills-block { padding: 4rem 0; border-bottom: 1px solid var(--border); }
+    .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .skill-row {
+      background: var(--bg-3); padding: 1.4rem 1.75rem;
+      display: flex; gap: 1.25rem; align-items: baseline;
+      border-radius: var(--radius-md); box-shadow: var(--shadow-sm);
+      transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
+    }
+    .skill-row:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
+    .skill-label { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--green); min-width: 120px; flex-shrink: 0; }
+    .skill-value { font-size: 0.92rem; color: var(--ink-soft); line-height: 1.6; }
 
     /* ── Certs ── */
-    .certs-block { padding: 5rem 0; border-bottom: 1px solid var(--border); }
-    .cert-list { display: flex; flex-direction: column; gap: 1px; background: var(--border); }
-    .cert-row { background: var(--bg); padding: 1.4rem 1.75rem; display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; transition: background 0.3s ease; }
-    .cert-row:hover { background: var(--bg-2); }
-    .cert-name { font-size: 0.92rem; color: var(--ink); margin-bottom: 0.2rem; }
-    .cert-issuer { font-size: 0.78rem; color: var(--ink-mute); }
-    .cert-date { font-size: 0.78rem; color: var(--green); white-space: nowrap; }
+    .certs-block { padding: 4rem 0; border-bottom: 1px solid var(--border); }
+    .cert-list { display: flex; flex-direction: column; gap: 0.75rem; }
+    .cert-row {
+      background: var(--bg-3); padding: 1.4rem 1.75rem;
+      display: flex; align-items: center; justify-content: space-between; gap: 1.5rem;
+      border-radius: var(--radius-md); box-shadow: var(--shadow-sm);
+      transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
+    }
+    .cert-row:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
+    .cert-name { font-size: 0.95rem; color: var(--ink); margin-bottom: 0.2rem; }
+    .cert-issuer { font-size: 0.8rem; color: var(--ink-mute); }
+    .cert-date { font-size: 0.8rem; color: var(--green); font-weight: 600; white-space: nowrap; }
 
     /* ── CTA ── */
     .cta-block {
-      margin-top: 4rem; padding: 3rem;
-      background: var(--bg-2); border: 1px solid var(--border);
+      margin-top: 4rem; padding: 3.25rem 3.5rem;
+      background: linear-gradient(135deg, var(--green-dim), var(--honey-dim));
+      border-radius: var(--radius-lg);
       display: flex; align-items: center; justify-content: space-between; gap: 2rem;
     }
-    .cta-text { font-family: var(--serif); font-size: 1.6rem; font-weight: 300; line-height: 1.3; }
-    .cta-text em { font-style: italic; color: var(--green); }
+    .cta-text { font-family: var(--serif); font-size: 1.6rem; font-weight: 400; line-height: 1.35; }
+    .cta-text em { font-style: italic; color: var(--honey); }
 
     @media (max-width: 768px) {
       .content { padding-left: 1.5rem; padding-right: 1.5rem; }
+      .proj-card { padding: 2.25rem 1.75rem; }
       .skills-grid { grid-template-columns: 1fr; }
       .skill-row { flex-direction: column; gap: 0.3rem; }
-      .cta-block { flex-direction: column; align-items: flex-start; }
+      .cta-block { flex-direction: column; align-items: flex-start; padding: 2.25rem; }
     }
   </style>
 </head>
@@ -124,7 +144,7 @@
   <div class="content">
 
     <div class="exp-block reveal">
-      <p class="block-label">Where I've worked</p>
+      <p class="block-label"><span></span> Where I've worked</p>
       <div class="exp-top">
         <h2 class="exp-title">Wipro Technologies</h2>
         <span class="exp-period">Aug 2022 – Present</span>
@@ -140,7 +160,7 @@
     </div>
 
     <div class="proj-block reveal">
-      <p class="block-label">Projects</p>
+      <p class="block-label"><span></span> Projects</p>
 
       <div class="proj-card">
         <p class="proj-tag">Personal Project</p>
@@ -177,7 +197,7 @@
     </div>
 
     <div class="skills-block reveal">
-      <p class="block-label">Technical skills</p>
+      <p class="block-label"><span></span> Technical skills</p>
       <div class="skills-grid">
         <div class="skill-row"><span class="skill-label">AI & LLM</span><span class="skill-value">LangChain, LangGraph, RAG, Prompt Engineering, Amazon Bedrock, IBM Watsonx</span></div>
         <div class="skill-row"><span class="skill-label">Agentic AI</span><span class="skill-value">Multi-Agent Systems, Agentic Workflows, Tool Use, ReAct Framework</span></div>
@@ -189,7 +209,7 @@
     </div>
 
     <div class="certs-block reveal">
-      <p class="block-label">Certifications</p>
+      <p class="block-label"><span></span> Certifications</p>
       <div class="cert-list">
         <div class="cert-row"><div><p class="cert-name">RAG for Generative AI Applications Specialization</p><p class="cert-issuer">IBM</p></div><span class="cert-date">May 2026</span></div>
         <div class="cert-row"><div><p class="cert-name">Generative AI Learning Plan – Developers (Partner)</p><p class="cert-issuer">Amazon Web Services</p></div><span class="cert-date">Mar 2026</span></div>
