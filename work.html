@@ -4,6 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Work — Amit Baghel</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+  <meta name="theme-color" content="#FAF6EF" />
   <link rel="stylesheet" href="style.css" />
   <style>
     .content { max-width: 1120px; margin: 0 auto; padding: 0 4rem 6rem; }
@@ -16,9 +20,13 @@
       color: var(--green); margin-bottom: 2.5rem;
     }
     .block-label span {
-      display: inline-block; width: 7px; height: 7px;
+      display: inline-block; width: 7px; height: 7px; flex-shrink: 0;
       border-radius: 50%; background: var(--green);
       box-shadow: 0 0 0 3px var(--green-glow);
+    }
+    .block-label::after {
+      content: ''; flex: 1; height: 1px; min-width: 2rem; max-width: 6rem;
+      background: linear-gradient(to right, var(--border), transparent);
     }
     .exp-top {
       display: flex; align-items: flex-start;
@@ -36,7 +44,7 @@
       background: var(--honey-dim);
       border-radius: var(--radius-md);
     }
-    .exp-highlight-num { font-family: var(--serif); font-size: 2rem; font-weight: 500; color: var(--honey); line-height: 1; }
+    .exp-highlight-num { font-family: var(--serif); font-size: 2rem; font-weight: 500; color: var(--honey); line-height: 1; font-feature-settings: 'onum' 1; }
     .exp-highlight-label { font-size: 0.85rem; color: var(--ink-soft); }
 
     /* ── Projects ── */
@@ -105,6 +113,10 @@
 
     @media (max-width: 768px) {
       .content { padding-left: 1.5rem; padding-right: 1.5rem; }
+      .exp-block, .proj-block, .skills-block, .certs-block { padding: 2.75rem 0; }
+      .exp-top { flex-direction: column; align-items: flex-start; gap: 0.4rem; }
+      .exp-title { font-size: 1.6rem; }
+      .exp-period { padding-top: 0; }
       .proj-card { padding: 2.25rem 1.75rem; }
       .skills-grid { grid-template-columns: 1fr; }
       .skill-row { flex-direction: column; gap: 0.3rem; }

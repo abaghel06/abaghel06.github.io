@@ -26,8 +26,8 @@
   --radius-md:  18px;
   --radius-sm:  10px;
   --radius-pill: 999px;
-  --shadow-sm:  0 2px 14px rgba(51, 45, 38, 0.06);
-  --shadow:     0 16px 40px rgba(51, 45, 38, 0.10);
+  --shadow-sm:  0 1px 2px rgba(51, 45, 38, 0.04), 0 6px 18px rgba(51, 45, 38, 0.06);
+  --shadow:     0 2px 6px rgba(51, 45, 38, 0.05), 0 26px 56px rgba(95, 120, 87, 0.18);
 }
 
 /* ── Reset ── */
@@ -35,14 +35,15 @@
 html { scroll-behavior: smooth; }
 
 body {
-  background: var(--bg);
+  background: radial-gradient(ellipse 1300px 800px at 50% -5%, #FFFEFA 0%, var(--bg) 60%);
   color: var(--ink);
   font-family: var(--sans);
   font-weight: 400;
   line-height: 1.75;
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
 }
+
+::selection { background: rgba(95, 120, 87, 0.25); color: var(--ink); }
 
 body::before {
   content: '';
@@ -59,14 +60,15 @@ nav {
   display: flex; align-items: center; justify-content: space-between;
   padding: 1rem 1.85rem;
   background: rgba(250, 246, 239, 0.78);
+  -webkit-backdrop-filter: blur(18px);
   backdrop-filter: blur(18px);
   border: 1px solid var(--border);
   border-radius: var(--radius-pill);
-  box-shadow: var(--shadow-sm);
+  box-shadow: var(--shadow-sm), inset 0 1px 0 rgba(255, 255, 255, 0.6);
   transition: padding 0.3s var(--ease), top 0.3s var(--ease), box-shadow 0.3s var(--ease);
 }
 
-nav.scrolled { padding: 0.7rem 1.5rem; top: 0.85rem; box-shadow: var(--shadow); }
+nav.scrolled { padding: 0.7rem 1.5rem; top: 0.85rem; box-shadow: var(--shadow), inset 0 1px 0 rgba(255, 255, 255, 0.6); }
 
 .nav-name {
   font-family: var(--serif);
@@ -98,7 +100,8 @@ nav.scrolled .name-initials { display: inline; }
 
 /* Icon links */
 .nav-icon {
-  display: flex; align-items: center;
+  display: flex; align-items: center; justify-content: center;
+  width: 36px; height: 36px; margin: -9px;
   color: var(--ink-soft); text-decoration: none;
   transition: color 0.3s var(--ease);
   line-height: 0;
@@ -123,11 +126,13 @@ nav.scrolled .name-initials { display: inline; }
 }
 
 .btn-primary {
-  background: var(--green); color: var(--bg-3);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0) 45%), var(--green);
+  color: var(--bg-3);
   border: 1px solid var(--green);
 }
 .btn-primary:hover {
-  background: #51664A; border-color: #51664A;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0) 45%), #51664A;
+  border-color: #51664A;
   transform: translateY(-2px);
   box-shadow: 0 10px 26px rgba(95, 120, 87, 0.3);
 }
@@ -157,6 +162,11 @@ nav.scrolled .name-initials { display: inline; }
   display: inline-block; width: 7px; height: 7px;
   border-radius: 50%; background: var(--green);
   box-shadow: 0 0 0 3px var(--green-glow);
+  flex-shrink: 0;
+}
+.page-eyebrow::after {
+  content: ''; flex: 1; height: 1px; min-width: 2rem;
+  background: linear-gradient(to right, var(--border), transparent);
 }
 
 .page-title {
