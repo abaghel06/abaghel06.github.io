@@ -228,6 +228,17 @@
     .proj-link:hover { color: var(--green); }
     .proj-link::after { content: '↗'; }
 
+    /* ── Intro splash ── */
+    #intro-splash {
+      position: fixed; inset: 0; z-index: 200;
+      background: var(--bg);
+      opacity: 1; transition: opacity 0.5s var(--ease);
+    }
+    #intro-splash.hidden { opacity: 0; pointer-events: none; }
+    #intro-splash video {
+      width: 100%; height: 100%; object-fit: cover;
+    }
+
     /* ── Responsive ── */
     @media (max-width: 900px) {
       .what-grid { grid-template-columns: 1fr 1fr; }
@@ -245,6 +256,12 @@
   <script data-goatcounter="https://abaghel06.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </head>
 <body>
+
+  <div id="intro-splash">
+    <video muted playsinline preload="auto">
+      <source src="assets/logo-intro.mp4" type="video/mp4">
+    </video>
+  </div>
 
   <nav>
     <a class="nav-name" href="index.html">
@@ -380,5 +397,22 @@
   </footer>
 
   <script src="main.js"></script>
+  <script>
+    (function () {
+      const splash = document.getElementById('intro-splash');
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        splash.remove();
+        return;
+      }
+      const video = splash.querySelector('video');
+      const dismiss = () => {
+        splash.classList.add('hidden');
+        splash.addEventListener('transitionend', () => splash.remove(), { once: true });
+      };
+      video.addEventListener('ended', dismiss);
+      video.play().catch(dismiss);
+      setTimeout(dismiss, 4500);
+    })();
+  </script>
 </body>
 </html>
