@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ask — Amit Baghel</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+  <meta name="theme-color" content="#FAF6EF" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .content { max-width: 760px; margin: 0 auto; padding: 0 4rem 6rem; }
+
+    .sr-only {
+      position: absolute; width: 1px; height: 1px;
+      padding: 0; margin: -1px; overflow: hidden;
+      clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+    }
+
+    .ask-panel {
+      background: var(--bg-3);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+      padding: 2.5rem;
+    }
+
+    .ask-status {
+      font-size: 0.85rem; color: var(--ink-mute);
+      margin-bottom: 1.5rem; line-height: 1.6;
+      display: flex; align-items: center; gap: 0.6rem;
+    }
+    .ask-status .dot {
+      width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0;
+      background: var(--green); box-shadow: 0 0 0 3px var(--green-glow);
+      animation: pulse 2.5s ease infinite;
+    }
+    .ask-status.ready .dot { animation: none; background: var(--ink-mute); box-shadow: none; }
+    .ask-status.error { color: #A85A3F; }
+    .ask-status.error .dot { display: none; }
+
+    .ask-form {
+      display: flex; gap: 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+    .ask-input {
+      flex: 1; background: var(--bg);
+      border: 1px solid var(--border); color: var(--ink);
+      font-family: var(--sans); font-size: 0.98rem;
+      padding: 0.9rem 1.25rem; border-radius: var(--radius-pill);
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      outline: none;
+    }
+    .ask-input:focus { border-color: var(--green); box-shadow: 0 0 0 3px var(--green-glow); }
+    .ask-input:disabled { opacity: 0.6; cursor: not-allowed; }
+    .ask-submit:disabled { opacity: 0.5; cursor: not-allowed; transform: none !important; box-shadow: none !important; }
+
+    .ask-chips, .ask-related {
+      display: flex; flex-wrap: wrap; gap: 0.6rem;
+    }
+    .ask-chips { margin-bottom: 0.5rem; }
+
+    .ask-chip {
+      font-family: var(--sans); font-size: 0.82rem; font-weight: 600;
+      padding: 0.5rem 1rem;
+      background: var(--green-dim); color: var(--green);
+      border: 1px solid transparent; border-radius: var(--radius-pill);
+      cursor: pointer; transition: all 0.2s var(--ease);
+      min-height: 36px;
+    }
+    .ask-chip:hover:not(:disabled) { background: var(--green-glow); }
+    .ask-chip:focus-visible { outline: none; border-color: var(--green); box-shadow: 0 0 0 3px var(--green-glow); }
+    .ask-chip:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    .ask-answer {
+      margin-top: 2rem; padding-top: 2rem;
+      border-top: 1px solid var(--border);
+    }
+    .ask-answer-tag {
+      display: inline-block;
+      font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--green); background: var(--green-dim);
+      padding: 0.3rem 0.7rem; border-radius: var(--radius-pill);
+      margin-bottom: 1.1rem;
+    }
+    .ask-answer-text {
+      font-size: 1rem; color: var(--ink-soft);
+      line-height: 1.85; margin-bottom: 1.25rem;
+    }
+    .ask-answer.fallback .ask-answer-text { color: var(--ink-mute); }
+    .ask-answer-link {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      font-size: 0.88rem; font-weight: 600;
+      color: var(--ink-mute); text-decoration: none;
+      margin-bottom: 1.75rem;
+      transition: color 0.3s ease;
+    }
+    .ask-answer-link:hover { color: var(--green); }
+    .ask-answer-link::after { content: '↗'; }
+    .ask-answer-link[hidden] { display: none; }
+
+    .ask-related-label {
+      font-size: 0.78rem; font-weight: 700; letter-spacing: 0.05em;
+      text-transform: uppercase; color: var(--ink-mute);
+      margin-bottom: 0.75rem; display: block;
+    }
+    .ask-related-label[hidden] { display: none; }
+
+    .ask-note {
+      font-size: 0.85rem; color: var(--ink-mute);
+      line-height: 1.7; margin-bottom: 2rem;
+    }
+
+    @media (max-width: 640px) {
+      .content { padding: 0 1.5rem 3.5rem; }
+      .ask-panel { padding: 1.75rem; }
+      .ask-form { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="nav-name" href="index.html">
+      <span class="name-full">Amit Baghel</span>
+      <span class="name-initials">AB</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="work.html">Work</a></li>
+      <li><a href="ask.html" class="active">Ask</a></li>
+      <li><a href="reads.html">Reads</a></li>
+      <li>
+        <a class="nav-icon" href="https://github.com/abaghel06" target="_blank" rel="noopener" aria-label="GitHub">
+          <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+        </a>
+      </li>
+      <li>
+        <a class="nav-icon" href="https://linkedin.com/in/abaghel06" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+  <div class="page-intro">
+    <p class="page-eyebrow"><span></span> Ask</p>
+    <h1 class="page-title">Ask me<br>anything</h1>
+    <p class="page-desc">A small AI model, running entirely in your browser, that answers questions using only what's actually written on this site — no server, no hallucinated facts.</p>
+  </div>
+
+  <div class="content">
+    <div class="ask-panel reveal">
+      <p class="ask-status" id="askStatus" role="status" aria-live="polite">
+        <span class="dot"></span> Loading the assistant — downloading a small AI model (first visit only, cached after)…
+      </p>
+
+      <form class="ask-form" id="askForm">
+        <label for="askInput" class="sr-only">Ask a question about Amit</label>
+        <input type="text" id="askInput" class="ask-input" placeholder="e.g. What projects has Amit built?" autocomplete="off" disabled />
+        <button type="submit" class="btn btn-primary ask-submit" id="askSubmit" disabled>Ask</button>
+      </form>
+
+      <div class="ask-chips" id="suggestedChips"></div>
+
+      <div class="ask-answer" id="askAnswer" hidden>
+        <span class="ask-answer-tag" id="answerTag"></span>
+        <p class="ask-answer-text" id="answerText" aria-live="polite"></p>
+        <a class="ask-answer-link" id="answerLink" target="_blank" rel="noopener" hidden>See it on the site</a>
+        <div>
+          <span class="ask-related-label" id="relatedLabel" hidden>Related</span>
+          <div class="ask-related" id="relatedChips"></div>
+        </div>
+      </div>
+    </div>
+
+    <p class="ask-note">Answers come from a fixed set of passages taken directly from <a href="work.html">this site</a> — nothing is generated, so the same question always gets the same answer. Off-topic questions get a plain "I don't know" instead of a guess.</p>
+  </div>
+
+  <footer>
+    <div class="site-footer">
+      <span class="footer-left">Amit Kumar Baghel</span>
+      <ul class="footer-links">
+        <li><a href="mailto:amit.baghel.agra@gmail.com">Email</a></li>
+        <li><a href="https://github.com/abaghel06" target="_blank" rel="noopener">GitHub</a></li>
+        <li><a href="https://linkedin.com/in/abaghel06" target="_blank" rel="noopener">LinkedIn</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+  <script type="module">
+    import { pipeline } from 'https://cdn.jsdelivr.net/npm/@xenova/transformers@2.17.2/dist/transformers.min.js';
+
+    const MODEL_NAME = 'Xenova/all-MiniLM-L6-v2';
+    const MODEL_REVISION = '751bff37182d3f1213fa05d7196b954e230abad9';
+    // Calibrated empirically against this KB: off-topic queries scored 0.10-0.18,
+    // legitimate on-topic queries scored 0.30-0.65. See tools/build_kb.mjs's
+    // sibling calibration notes in the plan doc for the test set used.
+    const MATCH_THRESHOLD = 0.28;
+    const RELATED_THRESHOLD = 0.2;
+    const RELATED_COUNT = 3;
+
+    const SUGGESTED_QUESTIONS = [
+      "List Amit's projects",
+      'What AI/LLM skills does he have?',
+      'What did he do at Wipro?',
+      'Tell me about Amit',
+      'What certifications does he have?',
+    ];
+
+    const TOPIC_RULES = [
+      { test: id => id === 'wipro-experience', label: 'Experience' },
+      { test: id => id === 'projects-overview', label: 'Projects' },
+      { test: id => id.startsWith('skill-'), label: 'Skills' },
+      { test: id => id === 'certifications', label: 'Certifications' },
+      { test: id => id === 'about', label: 'About' },
+      { test: id => id.startsWith('what-'), label: 'What I Do' },
+    ];
+    function topicLabel(id) {
+      for (const rule of TOPIC_RULES) if (rule.test(id)) return rule.label;
+      return 'Project';
+    }
+
+    function chipTitle(chunk) {
+      const firstSentence = chunk.text.split('.')[0];
+      return firstSentence.length > 40 ? firstSentence.slice(0, 40) + '…' : firstSentence;
+    }
+
+    function esc(str) {
+      return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    }
+
+    function dot(a, b) {
+      let sum = 0;
+      for (let i = 0; i < a.length; i++) sum += a[i] * b[i];
+      return sum;
+    }
+
+    const statusEl = document.getElementById('askStatus');
+    const formEl = document.getElementById('askForm');
+    const inputEl = document.getElementById('askInput');
+    const submitEl = document.getElementById('askSubmit');
+    const chipsEl = document.getElementById('suggestedChips');
+    const answerEl = document.getElementById('askAnswer');
+    const answerTagEl = document.getElementById('answerTag');
+    const answerTextEl = document.getElementById('answerText');
+    const answerLinkEl = document.getElementById('answerLink');
+    const relatedLabelEl = document.getElementById('relatedLabel');
+    const relatedChipsEl = document.getElementById('relatedChips');
+
+    let chunks = [];
+    let extractor = null;
+
+    function renderSuggestedChips() {
+      chipsEl.innerHTML = SUGGESTED_QUESTIONS.map(q =>
+        `<button type="button" class="ask-chip" data-question="${esc(q)}">${esc(q)}</button>`
+      ).join('');
+      chipsEl.querySelectorAll('.ask-chip').forEach(btn => {
+        btn.addEventListener('click', () => {
+          inputEl.value = btn.dataset.question;
+          runQuery(btn.dataset.question);
+        });
+      });
+    }
+
+    function showAnswer(topChunk, allScored) {
+      answerEl.hidden = false;
+      answerEl.classList.remove('fallback');
+      answerTagEl.textContent = topicLabel(topChunk.id);
+      answerTextEl.textContent = topChunk.text;
+      answerLinkEl.href = topChunk.sourceAnchor;
+      answerLinkEl.hidden = false;
+
+      const related = allScored
+        .filter(s => s.chunk.id !== topChunk.id && s.score >= RELATED_THRESHOLD)
+        .slice(0, RELATED_COUNT);
+
+      if (related.length) {
+        relatedLabelEl.hidden = false;
+        relatedChipsEl.innerHTML = related.map(s =>
+          `<button type="button" class="ask-chip" data-chunk-id="${esc(s.chunk.id)}">${esc(chipTitle(s.chunk))}</button>`
+        ).join('');
+        relatedChipsEl.querySelectorAll('.ask-chip').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const chunk = chunks.find(c => c.id === btn.dataset.chunkId);
+            if (chunk) showAnswer(chunk, allScored);
+            answerEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          });
+        });
+      } else {
+        relatedLabelEl.hidden = true;
+        relatedChipsEl.innerHTML = '';
+      }
+    }
+
+    function showFallback() {
+      answerEl.hidden = false;
+      answerEl.classList.add('fallback');
+      answerTagEl.textContent = 'No match';
+      answerTextEl.textContent = "I don't have a good answer for that from what's on the site. Try one of the suggestions above, or check the full write-up on the work page.";
+      answerLinkEl.href = 'work.html';
+      answerLinkEl.hidden = false;
+      relatedLabelEl.hidden = true;
+      relatedChipsEl.innerHTML = '';
+    }
+
+    async function runQuery(question) {
+      const trimmed = question.trim();
+      if (!trimmed || !extractor) return;
+
+      const output = await extractor(trimmed, { pooling: 'mean', normalize: true });
+      const queryVector = Array.from(output.data);
+
+      let best = null;
+      const allScored = [];
+      for (const chunk of chunks) {
+        const score = dot(queryVector, chunk.vector);
+        allScored.push({ chunk, score });
+        if (best === null || score > best.score) best = { chunk, score };
+      }
+
+      if (best && best.score >= MATCH_THRESHOLD) {
+        showAnswer(best.chunk, allScored);
+      } else {
+        showFallback();
+      }
+    }
+
+    formEl.addEventListener('submit', e => {
+      e.preventDefault();
+      runQuery(inputEl.value);
+    });
+
+    async function init() {
+      renderSuggestedChips();
+
+      try {
+        const [kbResponse, loadedExtractor] = await Promise.all([
+          fetch('kb/index.json').then(res => {
+            if (!res.ok) throw new Error('kb-fetch-failed');
+            return res.json();
+          }),
+          pipeline('feature-extraction', MODEL_NAME, {
+            revision: MODEL_REVISION,
+            progress_callback: data => {
+              if (data.status === 'progress') {
+                statusEl.innerHTML = `<span class="dot"></span> Loading model… ${Math.round(data.progress)}%`;
+              }
+            },
+          }),
+        ]);
+
+        chunks = kbResponse;
+        extractor = loadedExtractor;
+
+        statusEl.classList.add('ready');
+        statusEl.innerHTML = '<span class="dot"></span> Running entirely in your browser — nothing you type leaves this device.';
+        inputEl.disabled = false;
+        submitEl.disabled = false;
+
+        const queryParam = new URLSearchParams(window.location.search).get('q');
+        if (queryParam) {
+          inputEl.value = queryParam;
+          runQuery(queryParam);
+        }
+      } catch (err) {
+        statusEl.classList.add('error');
+        statusEl.textContent = "This assistant couldn't load in your browser (it needs WebAssembly support). Take a look at the work page or the résumé instead.";
+      }
+    }
+
+    init();
+  </script>
+</body>
+</html>

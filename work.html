@@ -133,6 +133,7 @@
     </a>
     <ul class="nav-links">
       <li><a href="work.html" class="active">Work</a></li>
+      <li><a href="ask.html">Ask</a></li>
       <li><a href="reads.html">Reads</a></li>
       <li>
         <a class="nav-icon" href="https://github.com/abaghel06" target="_blank" rel="noopener" aria-label="GitHub">
@@ -155,7 +156,7 @@
 
   <div class="content">
 
-    <div class="exp-block reveal">
+    <div class="exp-block reveal" id="wipro-experience">
       <p class="block-label"><span></span> Where I've worked</p>
       <div class="exp-top">
         <h2 class="exp-title">Wipro Technologies</h2>
@@ -171,10 +172,10 @@
       </div>
     </div>
 
-    <div class="proj-block reveal">
+    <div class="proj-block reveal" id="projects-overview">
       <p class="block-label"><span></span> Projects</p>
 
-      <div class="proj-card">
+      <div class="proj-card" id="loaniq">
         <p class="proj-tag">Personal Project</p>
         <h3 class="proj-name">LoanIQ — Intelligent Loan Approval Assistant</h3>
         <p class="proj-story">Loan decisions aren't just about a credit score — they involve income stability, debt ratios, regulatory compliance, and edge cases that break simple rules. LoanIQ automates that entire evaluation with a <strong>pipeline of four specialised AI agents</strong>, each responsible for one layer.</p>
@@ -185,7 +186,7 @@
         <a href="https://github.com/abaghel06/LoanIQ---Intelligent-Load-Approval-Assistant" target="_blank" rel="noopener" class="proj-link">View on GitHub</a>
       </div>
 
-      <div class="proj-card">
+      <div class="proj-card" id="revenue-leakage-finder">
         <p class="proj-tag">AWS-Wipro Codeathon</p>
         <h3 class="proj-name">Revenue Leakage Finder</h3>
         <p class="proj-story">Telecom companies lose money every day to billing gaps they don't even know exist — usage that never got billed, pricing rules applied wrong, payments that failed silently. This project builds an <strong>agentic system that hunts those anomalies automatically</strong>.</p>
@@ -196,7 +197,7 @@
         <a href="https://github.com/abaghel06/Revenue_leak_finder" target="_blank" rel="noopener" class="proj-link">View on GitHub</a>
       </div>
 
-      <div class="proj-card">
+      <div class="proj-card" id="food-recommendation-system">
         <p class="proj-tag">Personal Project</p>
         <h3 class="proj-name">Food Recommendation System</h3>
         <p class="proj-story">I wanted to understand how vector search actually works, so I built something I'd use: a food recommendation engine where you can ask questions like <strong>"what's nutritionally similar to chicken breast?"</strong> or "what gives me more iron?" — and get real answers, not keyword matches.</p>
@@ -207,7 +208,7 @@
         <a href="https://github.com/abaghel06/Food-Recommendation-System" target="_blank" rel="noopener" class="proj-link">View on GitHub</a>
       </div>
 
-      <div class="proj-card">
+      <div class="proj-card" id="indian-ca-rag">
         <p class="proj-tag">Personal Project</p>
         <h3 class="proj-name">Indian CA RAG</h3>
         <p class="proj-story">Indian tax and compliance questions have real, citable answers buried across the Income Tax Department, ICAI, and GST Council sites — but finding them means digging through PDFs and circulars. This is a <strong>RAG API that answers those questions from a knowledge base you control</strong>.</p>
@@ -218,7 +219,7 @@
         <a href="https://github.com/abaghel06/Indian-CA-RAG" target="_blank" rel="noopener" class="proj-link">View on GitHub</a>
       </div>
 
-      <div class="proj-card">
+      <div class="proj-card" id="ai-meeting-notes-assistant">
         <p class="proj-tag">Personal Project</p>
         <h3 class="proj-name">AI Meeting Notes Assistant</h3>
         <p class="proj-story">Meeting recordings are useless if nobody writes up what was actually decided. This tool takes an <strong>audio recording and turns it into structured meeting minutes and a task list</strong> — no manual note-taking.</p>
@@ -229,7 +230,7 @@
         <a href="https://github.com/abaghel06/AI-Meeting-Notes-Assistant" target="_blank" rel="noopener" class="proj-link">View on GitHub</a>
       </div>
 
-      <div class="proj-card">
+      <div class="proj-card" id="youtube-video-summarizer">
         <p class="proj-tag">Personal Project</p>
         <h3 class="proj-name">YouTube Video Summarizer</h3>
         <p class="proj-story">Long videos, short attention span — this app pulls a <strong>YouTube video's transcript and lets you summarize it or ask questions about it</strong> instead of watching the whole thing.</p>
@@ -239,21 +240,43 @@
         </div>
         <a href="https://github.com/abaghel06/YouTube-Video-Summarizer" target="_blank" rel="noopener" class="proj-link">View on GitHub</a>
       </div>
-    </div>
 
-    <div class="skills-block reveal">
-      <p class="block-label"><span></span> Technical skills</p>
-      <div class="skills-grid">
-        <div class="skill-row"><span class="skill-label">AI & LLM</span><span class="skill-value">LangChain, LangGraph, RAG, Prompt Engineering, Amazon Bedrock, IBM Watsonx, Voyage AI, Whisper</span></div>
-        <div class="skill-row"><span class="skill-label">Agentic AI</span><span class="skill-value">Multi-Agent Systems, Agentic Workflows, Tool Use, ReAct Framework</span></div>
-        <div class="skill-row"><span class="skill-label">Vector DBs</span><span class="skill-value">ChromaDB, FAISS, Semantic Search, Embeddings</span></div>
-        <div class="skill-row"><span class="skill-label">Cloud</span><span class="skill-value">AWS (Bedrock, S3, Lambda, EMR/Spark, Redshift Serverless, DynamoDB), Terraform, Microsoft Azure</span></div>
-        <div class="skill-row"><span class="skill-label">Automation</span><span class="skill-value">Workflow Automation, Data Integration, Process Design</span></div>
-        <div class="skill-row"><span class="skill-label">Code</span><span class="skill-value">Python, SQL (Oracle), Bash/Shell Scripting</span></div>
+      <div class="proj-card" id="wild-tails">
+        <p class="proj-tag">Just for Fun</p>
+        <h3 class="proj-name">Wild Tails</h3>
+        <p class="proj-story">Not every project needs a business case. This one's a <strong>living habitat simulation</strong> — an Indian wolf, a Bengal tiger, an Asiatic lion and a cobra, each roaming its own habitat across the whole page. A behaviour loop runs them through patrolling, stalking, hunting, feeding and resting on their own, weighted by species.</p>
+        <p class="proj-story">They're wild, and they behave like it: touch one and it pins its ears, warns you off and leaves. Every animal, plant and habitat is hand-drawn SVG, stride rate is derived from real ground speed so the feet don't skate, and the habitat sound is synthesised with the Web Audio API — no image or audio assets, no libraries, no backend.</p>
+        <div class="chips">
+          <span class="chip">HTML/CSS/JS</span><span class="chip">SVG Animation</span><span class="chip">Web Audio</span><span class="chip">Simulation Loop</span><span class="chip">No Build Tools</span>
+        </div>
+        <a href="https://abaghel06.github.io/wild-tails/" target="_blank" rel="noopener" class="proj-link">Visit the site</a>
+      </div>
+
+      <div class="proj-card" id="ask-amit">
+        <p class="proj-tag">Personal Project</p>
+        <h3 class="proj-name">Ask Amit — In-Browser RAG Assistant</h3>
+        <p class="proj-story">A small AI assistant on this site that answers questions about me — but it never generates text. It embeds your question with a tiny model running entirely in your browser, matches it against a fixed set of passages taken straight from this site, and shows the closest one <strong>verbatim</strong>. Off-topic questions get a plain "I don't know," never a guess.</p>
+        <p class="proj-story">The knowledge base isn't a separate file I have to remember to update — a script parses <strong>this site's own HTML</strong> and re-embeds it, so editing a project description here is the only maintenance the assistant ever needs. No server, no API key, no LLM generation: same question in, same answer out, every time.</p>
+        <div class="chips">
+          <span class="chip">Transformers.js</span><span class="chip">Semantic Search</span><span class="chip">RAG</span><span class="chip">Vanilla JS</span><span class="chip">No Backend</span>
+        </div>
+        <a href="ask.html" class="proj-link">Try it</a>
       </div>
     </div>
 
-    <div class="certs-block reveal">
+    <div class="skills-block reveal" id="technical-skills">
+      <p class="block-label"><span></span> Technical skills</p>
+      <div class="skills-grid">
+        <div class="skill-row" id="skill-ai-llm"><span class="skill-label">AI & LLM</span><span class="skill-value">LangChain, LangGraph, RAG, Prompt Engineering, Amazon Bedrock, IBM Watsonx, Voyage AI, Whisper</span></div>
+        <div class="skill-row" id="skill-agentic-ai"><span class="skill-label">Agentic AI</span><span class="skill-value">Multi-Agent Systems, Agentic Workflows, Tool Use, ReAct Framework</span></div>
+        <div class="skill-row" id="skill-vector-dbs"><span class="skill-label">Vector DBs</span><span class="skill-value">ChromaDB, FAISS, Semantic Search, Embeddings</span></div>
+        <div class="skill-row" id="skill-cloud"><span class="skill-label">Cloud</span><span class="skill-value">AWS (Bedrock, S3, Lambda, EMR/Spark, Redshift Serverless, DynamoDB), Terraform, Microsoft Azure</span></div>
+        <div class="skill-row" id="skill-automation"><span class="skill-label">Automation</span><span class="skill-value">Workflow Automation, Data Integration, Process Design</span></div>
+        <div class="skill-row" id="skill-code"><span class="skill-label">Code</span><span class="skill-value">Python, SQL (Oracle), Bash/Shell Scripting</span></div>
+      </div>
+    </div>
+
+    <div class="certs-block reveal" id="certifications">
       <p class="block-label"><span></span> Certifications</p>
       <div class="cert-list">
         <div class="cert-row"><div><p class="cert-name">RAG for Generative AI Applications Specialization</p><p class="cert-issuer">IBM</p></div><span class="cert-date">May 2026</span></div>
