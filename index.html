@@ -228,23 +228,6 @@
     .proj-link:hover { color: var(--green); }
     .proj-link::after { content: '↗'; }
 
-    /* ── Intro splash ── */
-    #intro-splash {
-      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-      z-index: 200; overflow: hidden;
-      background: var(--bg);
-      border-radius: 0;
-      transition: top 0.6s var(--ease), left 0.6s var(--ease),
-        width 0.6s var(--ease), height 0.6s var(--ease),
-        border-radius 0.6s var(--ease);
-    }
-    #intro-splash.hidden { opacity: 0; transition: opacity 0.35s var(--ease); pointer-events: none; }
-    #intro-splash video {
-      width: 100%; height: 100%; object-fit: contain;
-      transition: opacity 0.3s ease;
-    }
-    #intro-splash.collapsing video { opacity: 0; }
-
     /* ── Responsive ── */
     @media (max-width: 900px) {
       .what-grid { grid-template-columns: 1fr 1fr; }
@@ -262,12 +245,6 @@
   <script data-goatcounter="https://abaghel06.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </head>
 <body>
-
-  <div id="intro-splash">
-    <video autoplay muted playsinline preload="auto">
-      <source src="assets/logo-intro.mp4" type="video/mp4">
-    </video>
-  </div>
 
   <nav>
     <a class="nav-name" href="index.html">
@@ -403,48 +380,5 @@
   </footer>
 
   <script src="main.js"></script>
-  <script>
-    (function () {
-      const splash = document.getElementById('intro-splash');
-      const nav = document.querySelector('nav');
-      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        splash.remove();
-        return;
-      }
-      const video = splash.querySelector('video');
-      let dismissed = false;
-
-      const dismiss = () => {
-        if (dismissed) return;
-        dismissed = true;
-
-        const rect = nav.getBoundingClientRect();
-        splash.classList.add('collapsing');
-        splash.style.top = '0px';
-        splash.style.left = '0px';
-        splash.style.width = window.innerWidth + 'px';
-        splash.style.height = window.innerHeight + 'px';
-
-        requestAnimationFrame(() => {
-          splash.style.top = rect.top + 'px';
-          splash.style.left = rect.left + 'px';
-          splash.style.width = rect.width + 'px';
-          splash.style.height = rect.height + 'px';
-          splash.style.borderRadius = getComputedStyle(nav).borderRadius;
-        });
-
-        splash.addEventListener('transitionend', function onCollapsed(e) {
-          if (e.propertyName !== 'width') return;
-          splash.removeEventListener('transitionend', onCollapsed);
-          splash.classList.add('hidden');
-          splash.addEventListener('transitionend', () => splash.remove(), { once: true });
-        });
-      };
-
-      video.addEventListener('ended', dismiss);
-      video.play().catch(dismiss);
-      setTimeout(dismiss, 4500);
-    })();
-  </script>
 </body>
 </html>
